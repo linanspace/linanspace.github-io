@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="生活,思考,代码,博客" />
+   
+  <meta name="description" content="星空下de呢喃" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Java基础语法(一) |  星空下de呢喃
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Java基础1" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Java基础语法(一)
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ckrldzy6d000lfcu5gqx7aokj/" class="article-date">
+  <time datetime="2020-03-06T01:40:00.000Z" itemprop="datePublished">2020-03-06</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>这是我的Java语法自学整理的第一部分。</p>
+<p>这部分主要讲了常用DOS命令、Java虚拟机——JVM、JRE 和 JDK、HelloWorld入门程序、常量、变量和数据类型的相关基础知识。</p>
+<span id="more"></span>
+
+<h1 id="Java-基础语法-一"><a href="#Java-基础语法-一" class="headerlink" title="Java 基础语法(一)"></a>Java 基础语法(一)</h1><h2 id="常用DOS命令"><a href="#常用DOS命令" class="headerlink" title="常用DOS命令"></a>常用DOS命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th align="center">操作符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>盘符切换命令</td>
+<td align="center">盘符名:</td>
+</tr>
+<tr>
+<td>查看当前文件夹</td>
+<td align="center">dir</td>
+</tr>
+<tr>
+<td>进入文件夹命令</td>
+<td align="center">cd 文件夹名</td>
+</tr>
+<tr>
+<td>退出文件夹命令</td>
+<td align="center">cd..</td>
+</tr>
+<tr>
+<td>退出到磁盘根目录</td>
+<td align="center">cd\</td>
+</tr>
+<tr>
+<td>清屏</td>
+<td align="center">cls</td>
+</tr>
+</tbody></table>
+<h2 id="Java虚拟机——JVM"><a href="#Java虚拟机——JVM" class="headerlink" title="Java虚拟机——JVM"></a>Java虚拟机——JVM</h2><ul>
+<li><strong>JVM</strong>（Java Virtual Machine ）：Java虚拟机，简称JVM，是运行所有Java程序的假想计算机，是Java程序的运行环境，是Java 最具吸引力的特性之一。我们编写的Java代码，都运行在 JVM 之上。 </li>
+<li><strong>跨平台</strong>：任何软件的运行，都必须要运行在操作系统之上，而我们用Java编写的软件可以运行在任何的操作系统上，这个特性称为Java语言的跨平台特性。该特性是由JVM实现的，我们编写的程序运行在JVM上，而JVM运行在操作系统上。</li>
+<li>Java的虚拟机本身不具备跨平台功能的，每个操作系统下都有不同版本的虚拟机。     </li>
+</ul>
+<h2 id="JRE-和-JDK"><a href="#JRE-和-JDK" class="headerlink" title="JRE 和 JDK"></a>JRE 和 JDK</h2><ul>
+<li><strong>JRE</strong> (Java Runtime Environment) ：是Java程序的运行时环境，包含 JVM 和运行时所需要的 核心类库 。</li>
+<li><strong>JDK</strong> (Java Development Kit)：是Java程序开发工具包，包含 JRE 和开发人员使用的工具。<br>我们想要运行一个已有的Java程序，那么只需安装 JRE 即可。<br>我们想要开发一个全新的Java程序，那么必须安装 JDK   </li>
+</ul>
+<h2 id="HelloWorld入门程序"><a href="#HelloWorld入门程序" class="headerlink" title="HelloWorld入门程序"></a>HelloWorld入门程序</h2><p>开发环境已经搭建完毕，可以开发我们第一个Java程序了。<br>Java程序开发三步骤：<strong>编写、编译、运行 。</strong> </p>
+<p><img src="Java%E5%9F%BA%E7%A1%801/image-1.png" alt="image-1"></p>
+<h3 id="编写Java源程序"><a href="#编写Java源程序" class="headerlink" title="编写Java源程序"></a>编写Java源程序</h3><ol>
+<li><p>新建文本文件，完整的文件名修改为 HelloWorld.java ，其中文件名为 HelloWorld ，后缀名必须为 .java   </p>
+</li>
+<li><p>用软件打开。</p>
+</li>
+<li><p>在文件中键入文本并保存，代码如下  ：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>文件名和类的名字是一致的，注意大小写。  </p>
+</blockquote>
+</li>
+</ol>
+<h3 id="编译Java源文件"><a href="#编译Java源文件" class="headerlink" title="编译Java源文件"></a>编译Java源文件</h3><p>在DOS命令行中，进入Java源文件的目录，使用 <code>javac</code> 命令进行编译。<br>命令：  <code>javac Java源文件名.后缀名</code>  </p>
+<p>编译成功后，命令行没有任何提示。目录下产生了一个新的文件 HelloWorld.class ，该文件就是编译后的文件，是Java的可运行文件，称为字节码文件，有了字节码文件，就可以运行程序了。</p>
+<blockquote>
+<p>Java源文件的编译工具 javac.exe ，在JDK安装目录的bin目录下。但是由于配置了环境变量，可以再任意目录下使用。  </p>
+</blockquote>
+<h3 id="运行Java程序"><a href="#运行Java程序" class="headerlink" title="运行Java程序"></a>运行Java程序</h3><p>在DOS命令行中，进入Java源文件的目录，使用 java 命令进行运行。<br>命令： <code>java 类名字</code>   </p>
+<blockquote>
+<p>java HelloWord 不要写 不要写 不要写 .class  </p>
+</blockquote>
+<h3 id="编译和运行区别"><a href="#编译和运行区别" class="headerlink" title="编译和运行区别"></a>编译和运行区别</h3><ul>
+<li><strong>编译</strong>：是指将我们编写的Java源文件翻译成JVM认识的class文件，在这个过程中， javac 编译器会检查我们所写的程序是否有错误，有错误就会提示出来，如果没有错误就会编译成功。</li>
+<li><strong>运行</strong>：是指将 class文件 交给JVM去运行，此时JVM就会去执行我们编写的程序了。  </li>
+</ul>
+<h3 id="添加注释comment"><a href="#添加注释comment" class="headerlink" title="添加注释comment"></a>添加注释comment</h3><p><strong>注释</strong>：就是对代码的解释和说明。其目的是让人们能够更加轻松地了解代码。为代码添加注释，是十分必须要的，它不影响程序的编译和运行。<br>Java中有单行注释和多行注释</p>
+<ul>
+<li>单行注释以 //开头     换行结束</li>
+<li>多行注释以 /*开头     以*/结束  </li>
+</ul>
+<h3 id="关键字keywords"><a href="#关键字keywords" class="headerlink" title="关键字keywords"></a>关键字keywords</h3><p><strong>关键字</strong>：是指在程序中，Java已经定义好的单词，具有特殊含义。</p>
+<ul>
+<li>HelloWorld案例中，出现的关键字有 public 、class 、static 、void 等，这些单词已经被Java定义好，全部都是小写字母，notepad++中颜色特殊。</li>
+<li>关键字比较多，不能死记硬背，学到哪里记到哪里即可。  </li>
+</ul>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p><strong>标识符</strong>：是指在程序中，我们自己定义内容。比如类的名字、方法的名字和变量的名字等等，都是标识符。</p>
+<ul>
+<li>HelloWorld案例中，出现的标识符有类名字 HelloWorld  </li>
+<li><strong>命名规则</strong>： 硬性要求<ul>
+<li>标识符可以包含 英文字母26个(区分大小写) 、 0-9数字 、 $（美元符号) 和 _（下划线)。</li>
+<li>标识符不能以数字开头。</li>
+<li>标识符不能是关键字   </li>
+</ul>
+</li>
+<li><strong>命名规范</strong>： 软性建议<br>  类名规范：首字母大写，后面每个单词首字母大写（大驼峰式）。<br>  方法名规范： 首字母小写，后面每个单词首字母大写（小驼峰式）。<br>  变量名规范：全部小写  </li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>常量</strong>：是指在Java程序中固定不变的数据。  </p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">含义</th>
+<th align="left">数据举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">整数常量</td>
+<td align="left">所有的整数</td>
+<td align="left">0，1， 567， -9</td>
+</tr>
+<tr>
+<td align="center">小数常量</td>
+<td align="left">所有的小数</td>
+<td align="left">0.0， -0.1， 2.55</td>
+</tr>
+<tr>
+<td align="center">字符常量</td>
+<td align="left">单引号引起来,只能写一个字符,必须有内容</td>
+<td align="left">‘a’ ， ‘ ‘， ‘好’</td>
+</tr>
+<tr>
+<td align="center">字符串常量</td>
+<td align="left">双引号引起来,可以写多个字符,也可以不写</td>
+<td align="left">“A” ，”Hello” ，”你好” ，””</td>
+</tr>
+<tr>
+<td align="center">布尔常量</td>
+<td align="left">只有两个值（流程控制中使用）</td>
+<td align="left">true ， false</td>
+</tr>
+<tr>
+<td align="center">空常量</td>
+<td align="left">只有一个值（引用数据类型中使用）</td>
+<td align="left">null</td>
+</tr>
+</tbody></table>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>需求：输出各种类型的常量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstantDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="comment">//输出整数常量</span></span><br><span class="line">		System.out.println(<span class="number">123</span>);</span><br><span class="line">		<span class="comment">//输出小数常量</span></span><br><span class="line">		System.out.println(<span class="number">0.125</span>);</span><br><span class="line">		<span class="comment">//输出字符常量</span></span><br><span class="line">		System.out.println(<span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">		<span class="comment">//输出布尔常量</span></span><br><span class="line">		System.out.println(<span class="keyword">true</span>);</span><br><span class="line">		<span class="comment">//输出字符串常量</span></span><br><span class="line">		System.out.println(<span class="string">&quot;你好Java&quot;</span>);</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h2 id="变量和数据类型"><a href="#变量和数据类型" class="headerlink" title="变量和数据类型"></a>变量和数据类型</h2><h3 id="变量概述"><a href="#变量概述" class="headerlink" title="变量概述"></a>变量概述</h3><p><strong>变量</strong>：常量是固定不变的数据，那么在程序中可以变化的量称为变量  </p>
+<blockquote>
+<p>Java中要求一个变量每次只能保存一个数据，必须要明确保存的数据类型。  </p>
+</blockquote>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h3 id="数据类型分类"><a href="#数据类型分类" class="headerlink" title="数据类型分类"></a>数据类型分类</h3><p>Java的数据类型分为两大类：</p>
+<ul>
+<li><strong>基本数据类型</strong>：包括 整数 、浮点数 、字符 、布尔 。</li>
+<li><strong>引用数据类型</strong>：包括 类 、数组 、接口 。  </li>
+</ul>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p><strong>四类八种基本数据类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>关键字</th>
+<th>内存占用</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整型</td>
+<td>int（默认）</td>
+<td>4个字节</td>
+<td>-2的31次方~2的31次方-1</td>
+</tr>
+<tr>
+<td>长整型</td>
+<td>long</td>
+<td>8个字节</td>
+<td>-2的63次方~2的63次方-1</td>
+</tr>
+<tr>
+<td>短整型</td>
+<td>short</td>
+<td>2个字节</td>
+<td>-32768~32767</td>
+</tr>
+<tr>
+<td>单精度浮点数</td>
+<td>float</td>
+<td>4个字节</td>
+<td>1.4013E-45~3.4028E+38</td>
+</tr>
+<tr>
+<td>双精度浮点数</td>
+<td>double（默认）</td>
+<td>8个字节</td>
+<td>4.9E-324~1.7977E+308</td>
+</tr>
+<tr>
+<td>字节型</td>
+<td>byte</td>
+<td>1个字节</td>
+<td>-128~127</td>
+</tr>
+<tr>
+<td>字符型</td>
+<td>char</td>
+<td>2个字节</td>
+<td>0-65535</td>
+</tr>
+<tr>
+<td>布尔类型</td>
+<td>boolean</td>
+<td>1个字节</td>
+<td>true，false</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Java中的默认类型：整数类型是 int 、浮点类型是 double   </p>
+</blockquote>
+<h3 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h3><blockquote>
+<p>数据类型 变量名 = 数据值;  </p>
+</blockquote>
+<h3 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h3><p>定义所有基本数据类型的变量，代码如下：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Variable</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="comment">//定义字节型变量</span></span><br><span class="line">		<span class="keyword">byte</span> b = <span class="number">100</span>;</span><br><span class="line">		System.out.println(b);</span><br><span class="line">        <span class="comment">//定义短整型变量</span></span><br><span class="line">        <span class="keyword">short</span> s = <span class="number">1000</span>;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">        <span class="comment">//定义整型变量</span></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">123456</span>;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">        <span class="comment">//定义长整型变量</span></span><br><span class="line">        <span class="keyword">long</span> l = <span class="number">12345678900L</span>;</span><br><span class="line">        System.out.println(l);</span><br><span class="line">        <span class="comment">//定义单精度浮点型变量</span></span><br><span class="line">        <span class="keyword">float</span> f = <span class="number">5.5F</span>;</span><br><span class="line">        System.out.println(f);</span><br><span class="line">        <span class="comment">//定义双精度浮点型变量</span></span><br><span class="line">        <span class="keyword">double</span> d = <span class="number">8.5</span>;</span><br><span class="line">        System.out.println(d);</span><br><span class="line">        <span class="comment">//定义布尔型变量</span></span><br><span class="line">        <span class="keyword">boolean</span> bool = <span class="keyword">false</span>;</span><br><span class="line">        System.out.println(bool);</span><br><span class="line">        <span class="comment">//定义字符型变量</span></span><br><span class="line">        <span class="keyword">char</span> c = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        System.out.println(c);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>long类型：建议数据后加L表示。<br>float类型：建议数据后加F表示  </p>
+</blockquote>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>变量名称：在同一个大括号范围内，变量的名字不可以相同。</li>
+<li>变量赋值：定义的变量，不赋值不能使用。</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linanspace.github.io/2020/ckrldzy6d000lfcu5gqx7aokj/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ckrldzy6e000ofcu5gydc41lk/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Java基础语法(二)
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ckrldzy7a0037fcu56uocfy3n/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">如何利用Hexo架构搭建个人静态blog</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '20lAnkjXFTWuvN6E0NOAmbpv-gzGzoHsz',
+        app_key: 'PHss9nflC6pxJxLL1l0muOB2',
+        path: window.location.pathname,
+        notify: '',
+        verify: '',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2021
+        Michael Lee
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="星空下de呢喃"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','莫道君行早，更有早行人','人生如逆旅，我亦是行人'],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=34341364&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
