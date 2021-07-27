@@ -74,7 +74,7 @@
     
     
     
-    <article id="post-贪吃蛇项目" class="article article-type-post" itemscope
+    <article id="post-java面试题整理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -82,10 +82,114 @@
 
     
     <div class="article-meta">
-      <a href="/2021/ckrldzy7b003afcu5ecy6g5r7/" class="article-date">
-  <time datetime="2021-07-26T14:38:29.133Z" itemprop="datePublished">2021-07-26</time>
+      <a href="/2021/ckrleoizg003gewu5d7pqbxle/" class="article-date">
+  <time datetime="2021-07-26T14:38:29.091Z" itemprop="datePublished">2021-07-26</time>
 </a>
       
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>title: Java面试题整理<br>date: 2021-05-06 14:37:03<br>tags:<br>    - 学习<br>    - Java<br>categories: 学习</p>
+<h2 id="java中的sleep-方法与wait-方法整理"><a href="#java中的sleep-方法与wait-方法整理" class="headerlink" title="java中的sleep()方法与wait()方法整理"></a>java中的sleep()方法与wait()方法整理</h2><p>sleep()方法与wait()方法都可以让线程暂停一段时间，但sleep()方法控制范围是由当前线程决定的，而wait()方法是线程之间的通讯问题。下面分类介绍：</p>
+<h3 id="来源类："><a href="#来源类：" class="headerlink" title="来源类："></a>来源类：</h3><blockquote>
+<p>sleep()是Thread类的静态方法</p>
+<p>wait()是Object的方法，可以对任意一个对象调用wait()方法。</p>
+</blockquote>
+<h3 id="使用范围："><a href="#使用范围：" class="headerlink" title="使用范围："></a>使用范围：</h3><blockquote>
+<p>sleep()可以在任何地方使用，但必须捕获异常</p>
+<p> wait()只能在同步控制方法或同步控制块里面使用，不需要捕获异常</p>
+</blockquote>
+<h3 id="锁："><a href="#锁：" class="headerlink" title="锁："></a>锁：</h3><blockquote>
+<p>sleep()不释放锁，不出让资源系统</p>
+<p>wait()释放锁，进入线程等待池等待，出让系统资源</p>
+</blockquote>
+<h3 id="唤醒："><a href="#唤醒：" class="headerlink" title="唤醒："></a>唤醒：</h3><blockquote>
+<p>sleep()将一个线程睡眠病指定时间自动醒，如果时间不到，可以调用interreput()来强行打断</p>
+<p> wait()将一个线程挂起，直到超时或者该线程被唤醒</p>
+</blockquote>
+<h2 id="TimeUnit-SECONDS-sleep-和sleep区别"><a href="#TimeUnit-SECONDS-sleep-和sleep区别" class="headerlink" title="TimeUnit.SECONDS.sleep()和sleep区别"></a>TimeUnit.SECONDS.sleep()和sleep区别</h2><p>TimeUnit是java.util.concurrent包下面的一个类，TimeUnit提供了可读性更好的线程暂停操作，通常用来替换Thread.sleep()，Thread.sleep()是一个静态方法，暂停线程时它不会==释放锁==，该方法会抛出InterrupttedException异常（如果有线程中断了当前线程）。它有一个潜在的问题就是它的可读性。Thread.sleep()是一个重载方法，可以接收长整型毫秒和长整型的纳秒参数，这样对程序员造成的一个问题就是很难知道到底当前线程是睡眠了多少秒、分、小时或者天。</p>
+<h3 id="Thread-sleep-可读性差"><a href="#Thread-sleep-可读性差" class="headerlink" title="Thread.sleep() 可读性差"></a>Thread.sleep() 可读性差</h3><p>Thread.sleep()方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep（<span class="number">2400000</span>）</span><br></pre></td></tr></table></figure>
+
+<p>对于大多数程序员来说这种写法的可读性很差的，你需要把毫秒转换成秒和分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">4</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这比前面那个例子已经好多了，但是仍然不是最好的，你注意到睡眠时间用毫秒，不容易猜出当前线程将等待4分钟。</p>
+<h3 id="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。"><a href="#TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。" class="headerlink" title="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。"></a><strong>TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。</strong></h3><p>用TimeUnit写线程睡眠4分钟：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.MINUTES.sleep(<span class="number">4</span>);  <span class="comment">// sleeping for 4 minutes</span></span><br></pre></td></tr></table></figure>
+
+<p>类似你可以采用秒、分、小时级别来暂停当前线程。</p>
+<p><strong>TimeUnit 常用的颗粒度</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS 日的工具类 </span><br><span class="line">TimeUnit.HOURS 时的工具类 </span><br><span class="line">TimeUnit.MINUTES 分的工具类 </span><br><span class="line">TimeUnit.SECONDS 秒的工具类 </span><br><span class="line">TimeUnit.MILLISECONDS 毫秒的工具类</span><br><span class="line"></span><br><span class="line">TimeUnit.SECONDS.sleep( <span class="number">5</span> );    <span class="comment">//延时5秒</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="对-Volatile-的理解"><a href="#对-Volatile-的理解" class="headerlink" title="对 Volatile 的理解"></a>对 Volatile 的理解</h2><p>Volatile 是 Java 虚拟机提供轻量级的同步机制<br>1、保证可见性<br>2、不保证原子性<br>3、禁止指令重排  </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-贪吃蛇项目" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/ckrleoizj003lewu5fho91zif/"
+    >贪吃蛇项目</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/ckrleoizj003lewu5fho91zif/" class="article-date">
+  <time datetime="2021-05-13T03:50:07.000Z" itemprop="datePublished">2021-05-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
       
       
       
@@ -163,94 +267,8 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a></li></ul>
 
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-java面试题整理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-
-    
-    <div class="article-meta">
-      <a href="/2021/ckrldzy790035fcu5cmjrb5qz/" class="article-date">
-  <time datetime="2021-07-26T14:38:29.091Z" itemprop="datePublished">2021-07-26</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h2 id="java中的sleep-方法与wait-方法整理"><a href="#java中的sleep-方法与wait-方法整理" class="headerlink" title="java中的sleep()方法与wait()方法整理"></a>java中的sleep()方法与wait()方法整理</h2><p>sleep()方法与wait()方法都可以让线程暂停一段时间，但sleep()方法控制范围是由当前线程决定的，而wait()方法是线程之间的通讯问题。下面分类介绍：</p>
-<h3 id="来源类："><a href="#来源类：" class="headerlink" title="来源类："></a>来源类：</h3><blockquote>
-<p>sleep()是Thread类的静态方法</p>
-<p>wait()是Object的方法，可以对任意一个对象调用wait()方法。</p>
-</blockquote>
-<h3 id="使用范围："><a href="#使用范围：" class="headerlink" title="使用范围："></a>使用范围：</h3><blockquote>
-<p>sleep()可以在任何地方使用，但必须捕获异常</p>
-<p> wait()只能在同步控制方法或同步控制块里面使用，不需要捕获异常</p>
-</blockquote>
-<h3 id="锁："><a href="#锁：" class="headerlink" title="锁："></a>锁：</h3><blockquote>
-<p>sleep()不释放锁，不出让资源系统</p>
-<p>wait()释放锁，进入线程等待池等待，出让系统资源</p>
-</blockquote>
-<h3 id="唤醒："><a href="#唤醒：" class="headerlink" title="唤醒："></a>唤醒：</h3><blockquote>
-<p>sleep()将一个线程睡眠病指定时间自动醒，如果时间不到，可以调用interreput()来强行打断</p>
-<p> wait()将一个线程挂起，直到超时或者该线程被唤醒</p>
-</blockquote>
-<h2 id="TimeUnit-SECONDS-sleep-和sleep区别"><a href="#TimeUnit-SECONDS-sleep-和sleep区别" class="headerlink" title="TimeUnit.SECONDS.sleep()和sleep区别"></a>TimeUnit.SECONDS.sleep()和sleep区别</h2><p>TimeUnit是java.util.concurrent包下面的一个类，TimeUnit提供了可读性更好的线程暂停操作，通常用来替换Thread.sleep()，Thread.sleep()是一个静态方法，暂停线程时它不会==释放锁==，该方法会抛出InterrupttedException异常（如果有线程中断了当前线程）。它有一个潜在的问题就是它的可读性。Thread.sleep()是一个重载方法，可以接收长整型毫秒和长整型的纳秒参数，这样对程序员造成的一个问题就是很难知道到底当前线程是睡眠了多少秒、分、小时或者天。</p>
-<h3 id="Thread-sleep-可读性差"><a href="#Thread-sleep-可读性差" class="headerlink" title="Thread.sleep() 可读性差"></a>Thread.sleep() 可读性差</h3><p>Thread.sleep()方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep（<span class="number">2400000</span>）</span><br></pre></td></tr></table></figure>
-
-<p>对于大多数程序员来说这种写法的可读性很差的，你需要把毫秒转换成秒和分。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">4</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这比前面那个例子已经好多了，但是仍然不是最好的，你注意到睡眠时间用毫秒，不容易猜出当前线程将等待4分钟。</p>
-<h3 id="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。"><a href="#TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。" class="headerlink" title="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。"></a><strong>TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。</strong></h3><p>用TimeUnit写线程睡眠4分钟：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.MINUTES.sleep(<span class="number">4</span>);  <span class="comment">// sleeping for 4 minutes</span></span><br></pre></td></tr></table></figure>
-
-<p>类似你可以采用秒、分、小时级别来暂停当前线程。</p>
-<p><strong>TimeUnit 常用的颗粒度</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS 日的工具类 </span><br><span class="line">TimeUnit.HOURS 时的工具类 </span><br><span class="line">TimeUnit.MINUTES 分的工具类 </span><br><span class="line">TimeUnit.SECONDS 秒的工具类 </span><br><span class="line">TimeUnit.MILLISECONDS 毫秒的工具类</span><br><span class="line"></span><br><span class="line">TimeUnit.SECONDS.sleep( <span class="number">5</span> );    <span class="comment">//延时5秒</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="对-Volatile-的理解"><a href="#对-Volatile-的理解" class="headerlink" title="对 Volatile 的理解"></a>对 Volatile 的理解</h2><p>Volatile 是 Java 虚拟机提供轻量级的同步机制<br>1、保证可见性<br>2、不保证原子性<br>3、禁止指令重排  </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
 
     </footer>
 
@@ -271,13 +289,28 @@
 
   <div class="article-inner">
     
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/ckrleoiy60007ewu5aw9ufs2h/"
+    >HTML笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
 
     
     <div class="article-meta">
-      <a href="/2021/ckrldzy660008fcu5a4k247rh/" class="article-date">
-  <time datetime="2021-07-26T14:38:28.993Z" itemprop="datePublished">2021-07-26</time>
+      <a href="/2021/ckrleoiy60007ewu5aw9ufs2h/" class="article-date">
+  <time datetime="2021-04-13T03:50:07.000Z" itemprop="datePublished">2021-04-13</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
       
       
       
@@ -396,6 +429,8 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
 
     </footer>
 
@@ -416,13 +451,28 @@
 
   <div class="article-inner">
     
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/ckrleoiy70008ewu5fbxhezme/"
+    >CSS笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
 
     
     <div class="article-meta">
-      <a href="/2021/ckrldzy650007fcu5ccng9fz9/" class="article-date">
-  <time datetime="2021-07-26T14:38:28.990Z" itemprop="datePublished">2021-07-26</time>
+      <a href="/2021/ckrleoiy70008ewu5fbxhezme/" class="article-date">
+  <time datetime="2021-04-13T03:50:07.000Z" itemprop="datePublished">2021-04-13</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
       
       
       
@@ -510,85 +560,8 @@
     <footer class="article-footer">
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
 
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/ckrldzy6t001ofcu5a88668u5/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2021/ckrldzy6t001ofcu5a88668u5/" class="article-date">
-  <time datetime="2021-07-26T14:20:15.304Z" itemprop="datePublished">2021-07-26</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
 
     </footer>
 
@@ -612,7 +585,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrldzy790036fcu555z5hb4h/"
+  <a class="article-title" href="/2020/ckrleoizh003hewu52fxw3huq/"
     >多线程笔记</a
   >
 </h2>
@@ -623,7 +596,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrldzy790036fcu555z5hb4h/" class="article-date">
+      <a href="/2020/ckrleoizh003hewu52fxw3huq/" class="article-date">
   <time datetime="2020-06-15T09:06:12.000Z" itemprop="datePublished">2020-06-15</time>
 </a>
       
@@ -649,7 +622,7 @@
       
       <p>这部分主要讲了多线程的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrldzy790036fcu555z5hb4h/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrleoizh003hewu52fxw3huq/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -687,7 +660,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrldzy85005yfcu57gq3gzzi/"
+  <a class="article-title" href="/2020/ckrleoj0g006dewu55wfah273/"
     >剑指offer1</a
   >
 </h2>
@@ -698,7 +671,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrldzy85005yfcu57gq3gzzi/" class="article-date">
+      <a href="/2020/ckrleoj0g006dewu55wfah273/" class="article-date">
   <time datetime="2020-04-17T10:23:16.000Z" itemprop="datePublished">2020-04-17</time>
 </a>
       
@@ -725,7 +698,7 @@
       <p>这是我的剑指offer整理的第一部分。</p>
 <p>这部分主要讲了。</p>
       
-      <a class="article-more-link" href="/2020/ckrldzy85005yfcu57gq3gzzi/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrleoj0g006dewu55wfah273/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -763,7 +736,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrldzy6k0013fcu541bfhjp0/"
+  <a class="article-title" href="/2020/ckrleoiyp0016ewu568e2f2ms/"
     >Response和Request笔记</a
   >
 </h2>
@@ -774,7 +747,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrldzy6k0013fcu541bfhjp0/" class="article-date">
+      <a href="/2020/ckrleoiyp0016ewu568e2f2ms/" class="article-date">
   <time datetime="2020-04-14T09:09:04.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -801,7 +774,7 @@
       <p>这是我的这是我的Response和Request自学整理部分。</p>
 <p>这部分主要讲了Response和Request的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrldzy6k0013fcu541bfhjp0/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrleoiyp0016ewu568e2f2ms/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -839,7 +812,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrldzy68000dfcu5hcgxewcm/"
+  <a class="article-title" href="/2020/ckrleoiya000dewu5f5rcao9p/"
     >HTTP笔记</a
   >
 </h2>
@@ -850,7 +823,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrldzy68000dfcu5hcgxewcm/" class="article-date">
+      <a href="/2020/ckrleoiya000dewu5f5rcao9p/" class="article-date">
   <time datetime="2020-04-14T04:30:57.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -877,7 +850,7 @@
       <p>这是我的这是我的HTTP自学整理部分。</p>
 <p>这部分主要讲了HTTP的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrldzy68000dfcu5hcgxewcm/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrleoiya000dewu5f5rcao9p/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -915,7 +888,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrldzy6o0017fcu52wmldlb6/"
+  <a class="article-title" href="/2020/ckrleoiyq0018ewu56and8pfu/"
     >Servlet笔记</a
   >
 </h2>
@@ -926,7 +899,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrldzy6o0017fcu52wmldlb6/" class="article-date">
+      <a href="/2020/ckrleoiyq0018ewu56and8pfu/" class="article-date">
   <time datetime="2020-04-14T01:49:53.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -953,7 +926,7 @@
       <p>这是我的这是我的Servlet自学整理部分。</p>
 <p>这部分主要讲了Servlet的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrldzy6o0017fcu52wmldlb6/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrleoiyq0018ewu56and8pfu/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -967,6 +940,82 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Tomcat笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ckrleoiyu001eewu5ax93a7kw/"
+    >Tomcat笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ckrleoiyu001eewu5ax93a7kw/" class="article-date">
+  <time datetime="2020-04-13T12:46:29.000Z" itemprop="datePublished">2020-04-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>这是我的这是我的Tomcat自学整理部分。</p>
+<p>这部分主要讲了Tomcat的相关基础知识。</p>
+      
+      <a class="article-more-link" href="/2020/ckrleoiyu001eewu5ax93a7kw/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
 
 
     </footer>
