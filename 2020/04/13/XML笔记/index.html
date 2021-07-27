@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>XML笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="这是我的这是我的XML自学整理部分。 这部分主要讲了XML的相关基础知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML笔记">
+<meta property="og:url" content="http://example.com/2020/04/13/XML%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这是我的这是我的XML自学整理部分。 这部分主要讲了XML的相关基础知识。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-13T07:26:56.000Z">
+<meta property="article:modified_time" content="2020-04-13T12:43:38.273Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="XML">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-XML笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/04/13/XML%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2020-04-13T07:26:56.000Z" itemprop="datePublished">2020-04-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      XML笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这是我的这是我的XML自学整理部分。</p>
+<p>这部分主要讲了XML的相关基础知识。</p>
+<span id="more"></span>
+
+<h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><h2 id="XML基础"><a href="#XML基础" class="headerlink" title="XML基础"></a>XML基础</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Extensible Markup Language 可扩展标记语言</p>
+<p>可扩展：标签都是自定义的。 <code>&lt;user&gt;  &lt;student&gt;</code></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>存储数据</p>
+<ol>
+<li>配置文件</li>
+<li>在网络中传输</li>
+</ol>
+<h3 id="xml与html的区别"><a href="#xml与html的区别" class="headerlink" title="xml与html的区别"></a>xml与html的区别</h3><pre><code>1. xml标签都是自定义的，html标签是预定义。
+2. xml的语法严格，html语法松散
+3. xml是存储数据的，html是展示数据
+</code></pre>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><ol>
+<li>xml文档的后缀名 .xml</li>
+<li>xml第一行必须定义为文档声明</li>
+<li>xml文档中有且仅有一个根标签</li>
+<li>属性值必须使用引号(单双都可)引起来</li>
+<li>标签必须正确关闭</li>
+<li>xml标签名称区分大小写</li>
+</ol>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&#x27;1.0&#x27; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">users</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">&#x27;1&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>zhangsan<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>23<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>male<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">&#x27;2&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>lisi<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">age</span>&gt;</span>24<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">gender</span>&gt;</span>female<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">users</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h3><h4 id="文档声明"><a href="#文档声明" class="headerlink" title="文档声明"></a>文档声明</h4><ol>
+<li>格式：<code>&lt;?xml 属性列表 ?&gt;</code></li>
+<li>属性列表：<ul>
+<li><code>version</code>：版本号，必须的属性。</li>
+<li><code>encoding</code>：编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1。</li>
+<li><code>standalone</code>：是否独立。<ul>
+<li>取值：<ul>
+<li>yes：不依赖其他文件。</li>
+<li>no：依赖其他文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="指令-了解-：结合css的"><a href="#指令-了解-：结合css的" class="headerlink" title="指令(了解)：结合css的"></a>指令(了解)：结合css的</h4><p><code>&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;a.css&quot; ?&gt;</code></p>
+<h4 id="标签：标签名称自定义的"><a href="#标签：标签名称自定义的" class="headerlink" title="标签：标签名称自定义的"></a>标签：标签名称自定义的</h4><h5 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h5><ul>
+<li>名称可以包含字母、数字以及其他的字符 </li>
+<li>名称不能以数字或者标点符号开始 </li>
+<li>名称不能以字母 xml（或者 XML、Xml 等等）开始 </li>
+<li>名称不能包含空格 </li>
+</ul>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>id属性值唯一</p>
+<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><p>CDATA区：在该区域中的数据会被原样展示</p>
+<p>格式：<code>  &lt;![CDATA[ 数据 ]]&gt;</code></p>
+<h2 id="XML约束"><a href="#XML约束" class="headerlink" title="XML约束"></a>XML约束</h2><p>约束：规定xml文档的书写规则</p>
+<p>作为框架的使用者(程序员)：</p>
+<ol>
+<li>能够在xml中引入约束文档</li>
+<li>能够简单的读懂约束文档</li>
+</ol>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ol>
+<li>DTD:一种简单的约束技术。</li>
+<li>Schema:一种复杂的约束技术。</li>
+</ol>
+<h3 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h3><p>引入dtd文档到xml文档中</p>
+<ul>
+<li>内部dtd：将约束规则定义在xml文档中。</li>
+<li>外部dtd：将约束的规则定义在外部的dtd文件中。<ul>
+<li>本地：<code>&lt;!DOCTYPE 根标签名 SYSTEM &quot;dtd文件的位置&quot;&gt;</code></li>
+<li>网络：<code>&lt;!DOCTYPE 根标签名 PUBLIC &quot;dtd文件名字&quot; &quot;dtd文件的位置URL&quot;&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>1.填写xml文档的根元素<br>2.引入xsi前缀. <code> xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</code><br>3.引入xsd文件命名空间.  <code>xsi:schemaLocation=&quot;http://www.it.cn/xml  student.xsd&quot;</code><br>4.为每一个xsd约束声明一个前缀,作为标识 <code> xmlns=&quot;http://www.it.cn/xml&quot;</code> </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">students</span>   <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">&quot;http://www.it.cn/xml&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.it.cn/xml  student.xsd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="XML解析"><a href="#XML解析" class="headerlink" title="XML解析"></a>XML解析</h2><p>解析：操作xml文档，将文档中的数据读取到内存中。</p>
+<h3 id="操作xml文档"><a href="#操作xml文档" class="headerlink" title="操作xml文档"></a>操作xml文档</h3><ol>
+<li>解析(读取)：将文档中的数据读取到内存中。</li>
+<li>写入：将内存中的数据保存到xml文档中。持久化的存储。</li>
+</ol>
+<h3 id="解析xml的方式"><a href="#解析xml的方式" class="headerlink" title="解析xml的方式"></a>解析xml的方式</h3><ol>
+<li>DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树。<ul>
+<li>优点：操作方便，可以对文档进行CRUD的所有操作。</li>
+<li>缺点：占内存。</li>
+</ul>
+</li>
+<li>SAX：逐行读取，基于事件驱动的。<ul>
+<li>优点：不占内存。</li>
+<li>缺点：只能读取，不能增删改。        </li>
+</ul>
+</li>
+</ol>
+<h3 id="xml常见的解析器"><a href="#xml常见的解析器" class="headerlink" title="xml常见的解析器"></a>xml常见的解析器</h3><ol>
+<li>JAXP：sun公司提供的解析器，支持dom和sax两种思想。</li>
+<li>DOM4J：一款非常优秀的解析器。</li>
+<li>Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</li>
+<li>PULL：Android操作系统内置的解析器，sax方式的。</li>
+</ol>
+<h3 id="Jsoup"><a href="#Jsoup" class="headerlink" title="Jsoup"></a>Jsoup</h3><p>jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</p>
+<h4 id="快速入门-1"><a href="#快速入门-1" class="headerlink" title="快速入门"></a>快速入门</h4><h5 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h5><ol>
+<li>导入jar包</li>
+<li>获取Document对象</li>
+<li>获取对应的标签Element对象</li>
+<li>获取数据</li>
+</ol>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.jsoup.Jsoup;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.nodes.Document;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.nodes.Element;</span><br><span class="line"><span class="keyword">import</span> org.jsoup.select.Elements;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Jsoup快速入门</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsoupDemo1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//2.获取Document对象，根据xml文档获取</span></span><br><span class="line">        <span class="comment">//2.1获取student.xml的path</span></span><br><span class="line">        String path = JsoupDemo1.class.getClassLoader().getResource(<span class="string">&quot;student.xml&quot;</span>).getPath();</span><br><span class="line">        <span class="comment">//2.2解析xml文档，加载文档进内存，获取dom树---&gt;Document</span></span><br><span class="line">        Document document = Jsoup.parse(<span class="keyword">new</span> File(path), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        <span class="comment">//3.获取元素对象 Element</span></span><br><span class="line">        Elements elements = document.getElementsByTag(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(elements.size());</span><br><span class="line">        <span class="comment">//3.1获取第一个name的Element对象</span></span><br><span class="line">        Element element = elements.get(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//3.2获取数据</span></span><br><span class="line">        String name = element.text();</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="对象的使用"><a href="#对象的使用" class="headerlink" title="对象的使用"></a>对象的使用</h5><ol>
+<li><p>Jsoup：工具类，可以解析html或xml文档，返回Document。</p>
+<ul>
+<li>parse：解析html或xml文档，返回Document。<ul>
+<li>parse​(File in, String charsetName)：解析xml或html文件的。</li>
+<li>parse​(String html)：解析xml或html字符串。</li>
+<li>parse​(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Document：文档对象。代表内存中的dom树。</p>
+<ul>
+<li>获取Element对象<ul>
+<li>getElementById​(String id)：根据id属性值获取唯一的element对象。</li>
+<li>getElementsByTag​(String tagName)：根据标签名称获取元素对象集合。</li>
+<li>getElementsByAttribute​(String key)：根据属性名称获取元素对象集合。</li>
+<li>getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Elements：元素Element对象的集合。可以当做 <code>ArrayList&lt;Element&gt;</code>来使用</p>
+</li>
+<li><p>Element：元素对象</p>
+<ol>
+<li><p>获取子元素对象</p>
+<ul>
+<li>getElementById​(String id)：根据id属性值获取唯一的element对象。</li>
+<li>getElementsByTag​(String tagName)：根据标签名称获取元素对象集合。</li>
+<li>getElementsByAttribute​(String key)：根据属性名称获取元素对象集合。</li>
+<li>getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合。</li>
+</ul>
+</li>
+<li><p>获取属性值</p>
+<ul>
+<li>String attr(String key)：根据属性名称获取属性值。</li>
+</ul>
+</li>
+<li><p>获取文本内容</p>
+<ul>
+<li>String text():获取所有子标签的文本内容。</li>
+<li>String html():获取标签体的所有内容(包括字标签的字符串内容)。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Node：节点对象</p>
+<ul>
+<li>是Document和Element的父类        </li>
+</ul>
+</li>
+</ol>
+<h3 id="快捷查询方式"><a href="#快捷查询方式" class="headerlink" title="快捷查询方式"></a>快捷查询方式</h3><ol>
+<li>selector:选择器<ul>
+<li>使用的方法：<code>Elements    select​(String cssQuery)</code><ul>
+<li>语法：参考Selector类中定义的语法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言<ul>
+<li>使用Jsoup的Xpath需要额外导入jar包。</li>
+<li>查询w3cshool参考手册，使用xpath的语法完成查询</li>
+</ul>
+</li>
+</ol>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.获取student.xml的path</span></span><br><span class="line">String path = JsoupDemo6.class.getClassLoader().getResource(<span class="string">&quot;student.xml&quot;</span>).getPath();</span><br><span class="line"><span class="comment">//2.获取Document对象</span></span><br><span class="line">Document document = Jsoup.parse(<span class="keyword">new</span> File(path), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"><span class="comment">//3.根据document对象，创建JXDocument对象</span></span><br><span class="line">JXDocument jxDocument = <span class="keyword">new</span> JXDocument(document);</span><br><span class="line"><span class="comment">//4.结合xpath语法查询</span></span><br><span class="line"><span class="comment">//4.1查询所有student标签</span></span><br><span class="line">List&lt;JXNode&gt; jxNodes = jxDocument.selN(<span class="string">&quot;//student&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (JXNode jxNode : jxNodes) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">     &#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------&quot;</span>);</span><br><span class="line"><span class="comment">//4.2查询所有student标签下的name标签</span></span><br><span class="line">List&lt;JXNode&gt; jxNodes2 = jxDocument.selN(<span class="string">&quot;//student/name&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (JXNode jxNode : jxNodes2) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">     &#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------&quot;</span>);</span><br><span class="line"><span class="comment">//4.3查询student标签下带有id属性的name标签</span></span><br><span class="line">List&lt;JXNode&gt; jxNodes3 = jxDocument.selN(<span class="string">&quot;//student/name[@id]&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (JXNode jxNode : jxNodes3) &#123;</span><br><span class="line">       System.out.println(jxNode);</span><br><span class="line">     &#125;</span><br><span class="line">System.out.println(<span class="string">&quot;--------------------&quot;</span>);</span><br><span class="line"><span class="comment">//4.4查询student标签下带有id属性的name标签 并且id属性值为itcast</span></span><br><span class="line">List&lt;JXNode&gt; jxNodes4 = jxDocument.selN(<span class="string">&quot;//student/name[@id=&#x27;itcast&#x27;]&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (JXNode jxNode : jxNodes4) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/13/XML%E7%AC%94%E8%AE%B0/" data-id="ckrkqkr78001dsgu576wq3ust" data-title="XML笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XML/" rel="tag">XML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/13/Tomcat%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Tomcat笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/13/BootStrap%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">BootStrap笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B3%E4%BA%8E%E6%88%91/">关于我</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AF%95/">笔试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BootStrap/" rel="tag">BootStrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC/" rel="tag">JDBC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDBC-Java/" rel="tag">JDBC - Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Request/" rel="tag">Request</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Response/" rel="tag">Response</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/" rel="tag">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%91%E6%8C%87offer/" rel="tag">剑指offer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AF%95/" rel="tag">笔试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BootStrap/" style="font-size: 10px;">BootStrap</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JDBC/" style="font-size: 12.5px;">JDBC</a> <a href="/tags/JDBC-Java/" style="font-size: 10px;">JDBC - Java</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MySQL/" style="font-size: 15px;">MySQL</a> <a href="/tags/Request/" style="font-size: 10px;">Request</a> <a href="/tags/Response/" style="font-size: 10px;">Response</a> <a href="/tags/Servlet/" style="font-size: 10px;">Servlet</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 10px;">剑指offer</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 20px;">学习</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12.5px;">技术</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 10px;">笔试</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/26/%E8%B4%AA%E5%90%83%E8%9B%87%E9%A1%B9%E7%9B%AE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/26/java%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/26/HTML/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/26/CSS%E7%AC%94%E8%AE%B0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/26/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
