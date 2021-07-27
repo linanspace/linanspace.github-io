@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="生活,思考,代码,博客" />
+   
+  <meta name="description" content="星空下de呢喃" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    MySQL基础 |  星空下de呢喃
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<script src="/js/pace.min.js"></script>
+
+
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-MySQL基础" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  MySQL基础
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ckrldjpwr003g1ku580uibde0/" class="article-date">
+  <time datetime="2020-03-27T10:23:01.000Z" itemprop="datePublished">2020-03-27</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.8k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">19分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>这是我的这是我的MySQL自学整理的第一部分。</p>
+<p>这部分主要讲了MySQL基础的相关基础知识。</p>
+<span id="more"></span>
+
+<h1 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h1><h2 id="数据库的基本概念"><a href="#数据库的基本概念" class="headerlink" title="数据库的基本概念"></a>数据库的基本概念</h2><ol>
+<li><p>数据库的英文单词： <strong>DataBase</strong> 简称 ： DB</p>
+</li>
+<li><p>什么数据库？</p>
+<ul>
+<li>用于存储和管理数据的仓库。</li>
+</ul>
+</li>
+<li><p>数据库的特点：</p>
+<ol>
+<li>持久化存储数据的。其实数据库就是一个文件系统</li>
+<li>方便存储和管理数据</li>
+<li>使用了统一的方式操作数据库 – SQL    </li>
+</ol>
+</li>
+<li><p>常见的数据库软件</p>
+<ul>
+<li>Oracle：收费的大型数据库， Oracle 公司的产品。</li>
+<li>MySQL：开源免费的数据库，小型的数据库，已经被 Oracle 收购了。 MySQL6.x 版本也开始收费。后来 Sun公司收购了 MySQL，而 Sun 公司又被 Oracle 收购 。 </li>
+<li>SQL Server： MicroSoft 公司收费的中型的数据库。 C#、 .net 等语言常使用。</li>
+<li>DB2 ： IBM 公司的数据库产品,收费的。常应用在银行系统中。</li>
+<li>SQLite: 嵌入式的小型数据库，应用在手机端，如： Android。  </li>
+</ul>
+</li>
+</ol>
+<h1 id="MySQL数据库软件"><a href="#MySQL数据库软件" class="headerlink" title="MySQL数据库软件"></a>MySQL数据库软件</h1><h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><ol>
+<li>去mysql的安装目录找到my.ini文件<ul>
+<li>复制 datadir=”C:/ProgramData/MySQL/MySQL Server 5.5/Data/“</li>
+</ul>
+</li>
+<li>卸载MySQL</li>
+<li>删除C:/ProgramData目录下的MySQL文件夹。</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="MySQL服务启动"><a href="#MySQL服务启动" class="headerlink" title="MySQL服务启动"></a>MySQL服务启动</h4><ol>
+<li>手动。</li>
+<li><code>cmd--&gt; services.msc</code> 打开服务的窗口</li>
+<li>使用管理员打开cmd<ul>
+<li><code>net start mysql</code> : 启动mysql的服务</li>
+<li><code>net stop mysql</code>:关闭mysql服务</li>
+</ul>
+</li>
+</ol>
+<h3 id="MySQL登录"><a href="#MySQL登录" class="headerlink" title="MySQL登录"></a>MySQL登录</h3><ol>
+<li><code>mysql -uroot -p密码</code></li>
+<li><code>mysql -hip -uroot -p连接目标的密码</code></li>
+<li><code>mysql --host=ip --user=root --password=连接目标的密码</code></li>
+</ol>
+<h3 id="MySQL退出"><a href="#MySQL退出" class="headerlink" title="MySQL退出"></a>MySQL退出</h3><ol>
+<li><code>exit</code></li>
+<li><code>quit</code></li>
+</ol>
+<h3 id="MySQL目录结构"><a href="#MySQL目录结构" class="headerlink" title="MySQL目录结构"></a>MySQL目录结构</h3><ol>
+<li>MySQL安装目录：<code>basedir=&quot;D:/develop/MySQL/&quot;</code><ul>
+<li>配置文件 my.ini</li>
+</ul>
+</li>
+<li>MySQL数据目录：<code>datadir=&quot;C:/ProgramData/MySQL/MySQL Server</code> 5.5/Data/“<ul>
+<li>几个概念<ul>
+<li>数据库：文件夹</li>
+<li>表：文件</li>
+<li>数据：数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><h3 id="什么是SQL？"><a href="#什么是SQL？" class="headerlink" title="什么是SQL？"></a>什么是SQL？</h3><p>Structured Query Language：结构化查询语言<br>其实就是定义了操作所有关系型数据库的规则。每一种数据库操作的方式存在不一样的地方，称为“方言”。    </p>
+<h3 id="SQL通用语法"><a href="#SQL通用语法" class="headerlink" title="SQL通用语法"></a>SQL通用语法</h3><ul>
+<li>SQL 语句可以单行或多行书写，以分号结尾。</li>
+<li>可使用空格和缩进来增强语句的可读性。</li>
+<li>MySQL 数据库的 SQL 语句不区分大小写，关键字建议使用大写。</li>
+</ul>
+<p>3 种注释</p>
+<ul>
+<li>单行注释: – 注释内容 或 # 注释内容(mysql 特有) </li>
+<li>多行注释: /* 注释 */</li>
+</ul>
+<h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><ol>
+<li><code>DDL(Data Definition Language)</code>数据定义语言<br> 用来定义数据库对象：数据库，表，列等。关键字：create, drop,alter 等</li>
+<li><code>DML(Data Manipulation Language)</code>数据操作语言<br> 用来对数据库中表的数据进行增删改。关键字：insert, delete, update 等</li>
+<li><code>DQL(Data Query Language)</code>数据查询语言<br> 用来查询数据库中表的记录(数据)。关键字：select, where 等</li>
+<li><code>DCL(Data Control Language)</code>数据控制语言<br> 用来定义数据库的访问权限和安全级别，及创建用户。关键字：GRANT， REVOKE 等</li>
+</ol>
+<h2 id="DDL-操作数据库、表"><a href="#DDL-操作数据库、表" class="headerlink" title="DDL:操作数据库、表"></a>DDL:操作数据库、表</h2><h3 id="操作数据库：CRUD"><a href="#操作数据库：CRUD" class="headerlink" title="操作数据库：CRUD"></a>操作数据库：CRUD</h3><h4 id="C-Create-创建"><a href="#C-Create-创建" class="headerlink" title="C(Create): 创建"></a>C(Create): 创建</h4><ul>
+<li><p>创建数据库：</p>
+<ul>
+<li>create database 数据库名称;</li>
+</ul>
+</li>
+<li><p>创建数据库，判断不存在，再创建：</p>
+<ul>
+<li>create database if not exists 数据库名称;</li>
+</ul>
+</li>
+<li><p>创建数据库，并指定字符集</p>
+<ul>
+<li>create database 数据库名称 character set 字符集名;</li>
+</ul>
+</li>
+<li><p>练习： 创建db4数据库，判断是否存在，并制定字符集为gbk</p>
+<ul>
+<li>create database if not exists db4 character set gbk;</li>
+</ul>
+</li>
+</ul>
+<h4 id="R-Retrieve-查询"><a href="#R-Retrieve-查询" class="headerlink" title="R(Retrieve): 查询"></a>R(Retrieve): 查询</h4><ul>
+<li>查询所有数据库的名称:<ul>
+<li>show databases;</li>
+</ul>
+</li>
+<li>查询某个数据库的字符集:查询某个数据库的创建语句<ul>
+<li>show create database 数据库名称;</li>
+</ul>
+</li>
+</ul>
+<h4 id="U-Update-修改"><a href="#U-Update-修改" class="headerlink" title="U(Update):修改"></a>U(Update):修改</h4><ul>
+<li>修改数据库的字符集<ul>
+<li>alter database 数据库名称 character set 字符集名称;</li>
+</ul>
+</li>
+</ul>
+<h4 id="D-Delete-删除"><a href="#D-Delete-删除" class="headerlink" title="D(Delete):删除"></a>D(Delete):删除</h4><ul>
+<li>删除数据库<ul>
+<li>drop database 数据库名称;</li>
+</ul>
+</li>
+<li>判断数据库存在，存在再删除<ul>
+<li>drop database if exists 数据库名称;</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h3><ul>
+<li>查询当前正在使用的数据库名称<ul>
+<li>select database();</li>
+</ul>
+</li>
+<li>使用数据库<ul>
+<li>use 数据库名称;</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作表CRUD"><a href="#操作表CRUD" class="headerlink" title="操作表CRUD"></a>操作表CRUD</h3><h4 id="C-Create-创建-1"><a href="#C-Create-创建-1" class="headerlink" title="C(Create):创建"></a>C(Create):创建</h4><h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名(</span><br><span class="line">	列名<span class="number">1</span> 数据类型<span class="number">1</span>,</span><br><span class="line">	列名<span class="number">2</span> 数据类型<span class="number">2</span>,</span><br><span class="line">	....</span><br><span class="line">	列名n 数据类型n</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：最后一列，不需要加逗号（,）</p>
+</blockquote>
+<h5 id="数据库类型："><a href="#数据库类型：" class="headerlink" title="数据库类型："></a>数据库类型：</h5><ol>
+<li><p>int：整数类型</p>
+<ul>
+<li>age int,</li>
+</ul>
+</li>
+<li><p>double:小数类型</p>
+<ul>
+<li>score double(5,2)表示一共有5位，小数点后面保留两位。</li>
+</ul>
+</li>
+<li><p>date:日期，只包含年月日，格式：<code>yyyy-MM-dd</code></p>
+</li>
+<li><p><code>datetime</code>:日期，包含年月日时分秒     格式：<code>yyyy-MM-dd HH:mm:ss</code></p>
+</li>
+<li><p><code>timestamp</code>:时间戳类型，包含年月日时分秒     格式：<code>yyyy-MM-dd HH:mm:ss</code></p>
+<ul>
+<li>如果将来不给这个字段赋值，或赋值为null，则默认使用当前的系统时间，来自动赋值</li>
+</ul>
+</li>
+<li><p><code>varchar</code>：字符串</p>
+<ul>
+<li><code>name varchar(20)</code>:姓名最大20个字符</li>
+<li><code>zhangsan</code> 8个字符  张三 2个字符</li>
+</ul>
+</li>
+</ol>
+<h5 id="代码演示：创建表"><a href="#代码演示：创建表" class="headerlink" title="代码演示：创建表"></a>代码演示：创建表</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">			id <span class="type">int</span>,</span><br><span class="line">			name <span class="type">varchar</span>(<span class="number">32</span>),</span><br><span class="line">			age <span class="type">int</span> ,</span><br><span class="line">			score <span class="keyword">double</span>(<span class="number">4</span>,<span class="number">1</span>),</span><br><span class="line">			birthday <span class="type">date</span>,</span><br><span class="line">			insert_time <span class="type">timestamp</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h5 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h5><ul>
+<li>create table 表名 like 被复制的表名;          </li>
+</ul>
+<h4 id="R-Retrieve-：查询"><a href="#R-Retrieve-：查询" class="headerlink" title="R(Retrieve)：查询"></a>R(Retrieve)：查询</h4><ul>
+<li><p>查询某个数据库中所有的表名称</p>
+<ul>
+<li><code>show tables;</code></li>
+</ul>
+</li>
+<li><p>查询表结构</p>
+<ul>
+<li><code>desc 表名;</code></li>
+</ul>
+</li>
+<li><p>查询表的字符集</p>
+<ul>
+<li>show create table 表名；</li>
+</ul>
+</li>
+</ul>
+<h4 id="U-Update-修改-1"><a href="#U-Update-修改-1" class="headerlink" title="U(Update):修改"></a>U(Update):修改</h4><ol>
+<li>修改表名<br> <code>alter table 表名 rename to 新的表名;</code></li>
+<li>修改表的字符集<br> <code>alter table 表名 character set 字符集名称;</code></li>
+<li>添加一列<br> <code>alter table 表名 add 列名 数据类型;</code></li>
+<li>修改列名称 类型<br> <code>alter table 表名 change 列名 新列别 新数据类型;</code><br> <code>alter table 表名 modify 列名 新数据类型;</code></li>
+<li>删除列<br> alter table 表名 drop 列名;</li>
+</ol>
+<h4 id="D-Delete-删除-1"><a href="#D-Delete-删除-1" class="headerlink" title="D(Delete):删除"></a>D(Delete):删除</h4><ul>
+<li>drop table 表名;</li>
+<li>drop table  if exists 表名 ;</li>
+</ul>
+<h2 id="DML：增删改表中数据"><a href="#DML：增删改表中数据" class="headerlink" title="DML：增删改表中数据"></a>DML：增删改表中数据</h2><h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>格式：<code>insert into 表名(列名1,列名2,...列名n) values(值1,值2,...值n);</code></p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
+<li>列名和值要一一对应。</li>
+<li>如果表名后，不定义列名，则默认给所有列添加值<br> insert into 表名 values(值1,值2,…值n);</li>
+<li>除了数字类型，其他类型需要使用引号(单双都可以)引起来</li>
+</ol>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><p>格式：<code>delete from 表名 [where 条件]</code></p>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><ol>
+<li>如果不加条件，则删除表中所有记录。</li>
+<li>如果要删除所有记录</li>
+<li>delete from 表名; – 不推荐使用。有多少条记录就会执行多少次删除操作</li>
+<li>TRUNCATE TABLE 表名; – 推荐使用，效率更高 先删除表，然后再创建一张一样的表。</li>
+</ol>
+<h3 id="修改数据："><a href="#修改数据：" class="headerlink" title="修改数据："></a>修改数据：</h3><h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h4><p>格式：<code>update 表名 set 列名1 = 值1, 列名2 = 值2,... [where 条件];</code></p>
+<h4 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h4><ol>
+<li>如果不加任何条件，则会将表中所有记录全部修改。</li>
+</ol>
+<h2 id="DQL：查询表中的记录"><a href="#DQL：查询表中的记录" class="headerlink" title="DQL：查询表中的记录"></a>DQL：查询表中的记录</h2><p>查询表中所有记录：<code>select * from 表名;</code></p>
+<h3 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">	字段列表</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">	表名列表</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">	条件列表</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">	分组字段</span><br><span class="line"><span class="keyword">having</span></span><br><span class="line">	分组之后的条件</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span></span><br><span class="line">	排序</span><br><span class="line">limit</span><br><span class="line">	分页限定</span><br></pre></td></tr></table></figure>
+
+<h3 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h3><h4 id="多个字段的查询"><a href="#多个字段的查询" class="headerlink" title="多个字段的查询"></a>多个字段的查询</h4><h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p><code>select  字段名1，字段名2... from 表名；</code></p>
+<blockquote>
+<p>注意：如果查询所有字段，则可以使用*来替代字段列表。</p>
+</blockquote>
+<h4 id="去除重复"><a href="#去除重复" class="headerlink" title="去除重复"></a>去除重复</h4><p><code>select distinct 字段名1，字段名2... from 表名；</code></p>
+<h4 id="计算列"><a href="#计算列" class="headerlink" title="计算列"></a>计算列</h4><ol>
+<li><p>一般可以使用四则运算计算一些列的值。（一般只会进行数值型的计算）</p>
+<p><code>select 字段名1，字段名2...，字段名1+字段名2 from 表名；</code></p>
+</li>
+<li><p>null参与的运算，计算结果都为null。</p>
+<p>解决方法：<code>select 字段名1，字段名2...，字段名1+ifnull(表达式1,表达式2) from 表名；</code></p>
+</li>
+</ol>
+<ul>
+<li>表达式1：哪个字段需要判断是否为null</li>
+<li>如果该字段为null后的替换值。</li>
+</ul>
+<h4 id="起别名"><a href="#起别名" class="headerlink" title="起别名"></a>起别名</h4><p>格式：<code>select 字段名1，字段名2...，字段名1+ifnull(表达式1,表达式2) as 别名 from 表名；</code></p>
+<p>起别名就是在要查询的字段的后面用as关键字空格加上要用的别名，as也可以省略，空格后面直接加上别名。</p>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><h4 id="where子句后跟条件"><a href="#where子句后跟条件" class="headerlink" title="where子句后跟条件"></a>where子句后跟条件</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段名 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 条件;</span><br><span class="line">流程：取出表中的每条数据，满足条件的记录就返回，不满足条件的记录不返回</span><br></pre></td></tr></table></figure>
+
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><h5 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h5><table>
+<thead>
+<tr>
+<th>比较运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;、 &lt;、 &lt;=、 &gt;=、 =、 &lt;&gt;</td>
+<td>&lt;&gt;在 SQL 中表示不等于，在 mysql 中也可以使用!= 没有==</td>
+</tr>
+<tr>
+<td>BETWEEN…AND</td>
+<td>在一个范围之内，如： between 100 and 200 相当于条件在 100 到 200 之间，包头又包尾</td>
+</tr>
+<tr>
+<td>IN(集合)</td>
+<td>集合表示多个值，使用逗号分隔</td>
+</tr>
+<tr>
+<td>LIKE ‘张%’</td>
+<td>模糊查询</br>占位符：</br>_:单个任意字符。</br> %：多个任意字符</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>查询某一列为 NULL 的值，注：不能写=NULL</td>
+</tr>
+</tbody></table>
+<h5 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h5><table>
+<thead>
+<tr>
+<th>逻辑运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>and 或 &amp;&amp;</td>
+<td>与， SQL 中建议使用前者，后者并不通用。</td>
+</tr>
+<tr>
+<td>or 或 ||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>not 或 !</td>
+<td>非</td>
+</tr>
+</tbody></table>
+<h5 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询年龄大于20岁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄等于20岁</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄不等于20岁</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">!=</span> <span class="number">20</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">&lt;&gt;</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄大于等于20 小于等于30</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">20</span> <span class="operator">&amp;&amp;</span>  age <span class="operator">&lt;=</span><span class="number">30</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">&gt;=</span> <span class="number">20</span> <span class="keyword">AND</span>  age <span class="operator">&lt;=</span><span class="number">30</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="keyword">BETWEEN</span> <span class="number">20</span> <span class="keyword">AND</span> <span class="number">30</span>;</span><br><span class="line"><span class="comment">-- 查询年龄22岁，18岁，25岁的信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="operator">=</span> <span class="number">22</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">18</span> <span class="keyword">OR</span> age <span class="operator">=</span> <span class="number">25</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> age <span class="keyword">IN</span> (<span class="number">22</span>,<span class="number">18</span>,<span class="number">25</span>);</span><br><span class="line"><span class="comment">-- 查询英语成绩为null</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> english <span class="operator">=</span> <span class="keyword">NULL</span>; <span class="comment">-- 不对的。null值不能使用 = （!=） 判断</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> english <span class="keyword">IS</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="comment">-- 查询英语成绩不为null</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> english  <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓马的有哪些？ like</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> NAME <span class="keyword">LIKE</span> <span class="string">&#x27;马%&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询姓名第二个字是化的人</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> NAME <span class="keyword">LIKE</span> &quot;_化%&quot;;</span><br><span class="line"><span class="comment">-- 查询姓名是3个字的人</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> NAME <span class="keyword">LIKE</span> <span class="string">&#x27;___&#x27;</span>;</span><br><span class="line"><span class="comment">-- 查询姓名中包含德的人</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> NAME <span class="keyword">LIKE</span> <span class="string">&#x27;%德%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询排序"><a href="#查询排序" class="headerlink" title="查询排序"></a>查询排序</h3><h4 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h4><p>通过 <code>ORDER BY 子句</code>，可以将查询出的结果进行排序(排序只是显示方式，不会影响数据库中数据的顺序)</p>
+<h5 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段名 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 字段<span class="operator">=</span>值 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>];</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>order by 排序字段1 排序方式1 ，  排序字段2 排序方式2…</p>
+</blockquote>
+<h5 id="排序方式"><a href="#排序方式" class="headerlink" title="排序方式"></a>排序方式</h5><ul>
+<li>ASC：升序，默认的。</li>
+<li>DESC：降序。</li>
+</ul>
+<blockquote>
+<p>如果有多个排序条件，则当前边的条件值一样时，才会判断第二条件。</p>
+</blockquote>
+<h4 id="单列排序"><a href="#单列排序" class="headerlink" title="单列排序"></a>单列排序</h4><p>只按某一个字段进行排序，单列排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询所有数据,使用年龄降序排序</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="组合排序"><a href="#组合排序" class="headerlink" title="组合排序"></a>组合排序</h4><p>同时对多个字段进行排序，如果第 1 个字段相等，则按第 2 个字段排序，依次类推。</p>
+<h5 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段名 <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 字段<span class="operator">=</span>值 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 <span class="number">1</span> [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], 字段名 <span class="number">2</span> [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>];  </span><br></pre></td></tr></table></figure>
+
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询所有数据,在年龄降序排序的基础上，如果年龄相同再以数学成绩升序排序</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">order</span> <span class="keyword">by</span> age <span class="keyword">desc</span>, math <span class="keyword">asc</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h4><p>将一列数据作为一个整体，进行纵向的计算。</p>
+<table>
+<thead>
+<tr>
+<th>SQL 中的聚合函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>max(列名)</td>
+<td>求这一列的最大值</td>
+</tr>
+<tr>
+<td>min(列名)</td>
+<td>求这一列的最小值</td>
+</tr>
+<tr>
+<td>avg(列名)</td>
+<td>求这一列的平均值</td>
+</tr>
+<tr>
+<td>count(列名)</td>
+<td>统计这一列有多少条记录,一般选择非空的列：主键</td>
+</tr>
+<tr>
+<td>sum(列名)</td>
+<td>对这一列求总和</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：聚合函数的计算，排除null值。</p>
+</blockquote>
+<p>解决方案：</p>
+<h5 id="选择不包含非空的列进行计算"><a href="#选择不包含非空的列进行计算" class="headerlink" title="选择不包含非空的列进行计算"></a>选择不包含非空的列进行计算</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 聚合函数(列名) <span class="keyword">FROM</span> 表名;</span><br><span class="line"><span class="comment">-- 查询学生总数</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">as</span> 总人数 <span class="keyword">from</span> student;</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">as</span> 总人数 <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+
+<h5 id="IFNULL函数"><a href="#IFNULL函数" class="headerlink" title="IFNULL函数"></a>IFNULL函数</h5><p>对于 NULL 的记录不会统计， 建议如果统计个数则不要使用有可能为 null 的列， 但如果需要把 NULL也统计进去呢？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IFNULL(列名，默认值) 如果列名不为空，返回这列的值。如果为 <span class="keyword">NULL</span>，则返回默认值。</span><br><span class="line"><span class="comment">-- 查询 id 字段，如果为 null，则使用 0 代替</span></span><br><span class="line"><span class="keyword">select</span> ifnull(id,<span class="number">0</span>) <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+
+<p>我们可以利用 IFNULL()函数，如果记录为 NULL，给个默认值，这样统计的数据就不会遗漏  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(ifnull(id,<span class="number">0</span>)) <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询年龄大于 20 的总数</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> student <span class="keyword">where</span> age<span class="operator">&gt;</span><span class="number">20</span>;</span><br><span class="line"><span class="comment">-- 查询数学成绩总分</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(math) 总分 <span class="keyword">from</span> student;</span><br><span class="line"><span class="comment">-- 查询数学成绩平均分</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(math) 平均分 <span class="keyword">from</span> student;</span><br><span class="line"><span class="comment">-- 查询数学成绩最高分</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">max</span>(math) 最高分 <span class="keyword">from</span> student;</span><br><span class="line"><span class="comment">-- 查询数学成绩最低分</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">min</span>(math) 最低分 <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure>
+
+<h5 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h5><p>分组查询是指使用 GROUP BY 语句对查询信息进行分组，相同数据作为一组,一般分组会跟聚合函数一起使用。  </p>
+<h6 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 字段 <span class="number">1</span>,字段 <span class="number">2.</span>.. <span class="keyword">FROM</span> 表名 <span class="keyword">GROUP</span> <span class="keyword">BY</span> 分组字段 [<span class="keyword">HAVING</span> 条件];</span><br><span class="line"><span class="comment">-- 按性别进行分组，求男生和女生数学的平均分</span></span><br><span class="line"><span class="keyword">select</span> sex, <span class="built_in">avg</span>(math) <span class="keyword">from</span> student3 <span class="keyword">group</span> <span class="keyword">by</span> sex;</span><br></pre></td></tr></table></figure>
+
+<h6 id="where-和-having-的区别"><a href="#where-和-having-的区别" class="headerlink" title="where 和 having 的区别"></a>where 和 having 的区别</h6><table>
+<thead>
+<tr>
+<th>子名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>where 子句</td>
+<td>1) 对查询结果进行分组前， 将不符合 where 条件的行去掉， 即在分组之前过滤数据， 即先过滤 再分组。</br> 2) where 后面不可以使用聚合函数</td>
+</tr>
+<tr>
+<td>having 子句</td>
+<td>1) having 子句的作用是筛选满足条件的组，即在分组之后过滤数据，即先分组再过滤。</br>  2) having 后面可以使用聚合函数</td>
+</tr>
+</tbody></table>
+<h6 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按照性别分组。分别查询男、女同学的平均分</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> sex , <span class="built_in">AVG</span>(math) <span class="keyword">FROM</span> student <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 按照性别分组。分别查询男、女同学的平均分,人数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> sex , <span class="built_in">AVG</span>(math),<span class="built_in">COUNT</span>(id) <span class="keyword">FROM</span> student <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"></span><br><span class="line"><span class="comment">--  按照性别分组。分别查询男、女同学的平均分,人数 要求：分数低于70分的人，不参与分组</span></span><br><span class="line"><span class="keyword">SELECT</span> sex , <span class="built_in">AVG</span>(math),<span class="built_in">COUNT</span>(id) <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> math <span class="operator">&gt;</span> <span class="number">70</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br><span class="line"></span><br><span class="line"><span class="comment">--  按照性别分组。分别查询男、女同学的平均分,人数 要求：分数低于70分的人，不参与分组,分组之后。人数要大于2个人</span></span><br><span class="line"><span class="keyword">SELECT</span> sex , <span class="built_in">AVG</span>(math),<span class="built_in">COUNT</span>(id) <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> math <span class="operator">&gt;</span> <span class="number">70</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(id) <span class="operator">&gt;</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> sex , <span class="built_in">AVG</span>(math),<span class="built_in">COUNT</span>(id) 人数 <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> math <span class="operator">&gt;</span> <span class="number">70</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex <span class="keyword">HAVING</span> 人数 <span class="operator">&gt;</span> <span class="number">2</span>;	</span><br></pre></td></tr></table></figure>
+
+<h5 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h5><p>LIMIT 是限制的意思，所以 LIMIT 的作用就是限制查询记录的条数  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="operator">|</span>字段列表 [<span class="keyword">as</span> 别名] <span class="keyword">FROM</span> 表名 [<span class="keyword">WHERE</span> 子句] [<span class="keyword">GROUP</span> <span class="keyword">BY</span> 子句][<span class="keyword">HAVING</span> 子句][<span class="keyword">ORDER</span> <span class="keyword">BY</span> 子</span><br><span class="line">句][LIMIT 子句];</span><br></pre></td></tr></table></figure>
+
+<p>语法</p>
+<table>
+<thead>
+<tr>
+<th>LIMIT offset,length;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>offset：起始行数，从 0 开始计数，如果省略，默认就是 0</td>
+</tr>
+<tr>
+<td>length： 返回的行数</td>
+</tr>
+</tbody></table>
+<h6 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询学生表中数据，从第 3 条开始显示，显示 6 条。</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student3 limit <span class="number">2</span>,<span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>第一个参数是 0 可以省略写  </li>
+<li>最后如果不够 5，有多少显示多少  </li>
+</ol>
+</blockquote>
+<h2 id="DCL-Data-Control-Language"><a href="#DCL-Data-Control-Language" class="headerlink" title="DCL (Data Control Language)"></a>DCL (Data Control Language)</h2><h3 id="SQL分类-1"><a href="#SQL分类-1" class="headerlink" title="SQL分类"></a>SQL分类</h3><ol>
+<li>DDL：操作数据库和表  create / alter / drop  </li>
+<li>DML：增删改表中数据  insert /update/delete  </li>
+<li>DQL：查询表中数据      select /show  </li>
+<li>DCL：管理用户，授权  grant /revoke  </li>
+</ol>
+<p>我们现在默认使用的都是 root 用户， 超级管理员， 拥有全部的权限。但是， 一个公司里面的数据库服务器上面可能同时运行着很多个项目的数据库。所以， 我们应该可以根据不同的项目建立不同的用户， 分配不同的权限来管理和维护数据库。</p>
+<blockquote>
+<p>注： mysqld 是 MySQL 的主程序，服务器端。 mysql 是 MySQL 的命令行工具，客户端。  </p>
+</blockquote>
+<p>DBA：数据库管理员</p>
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><h4 id="语法-6"><a href="#语法-6" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机名&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;密码&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键字说明"><a href="#关键字说明" class="headerlink" title="关键字说明"></a>关键字说明</h4><table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">‘用户名’</td>
+<td align="center">将创建的用户名</td>
+</tr>
+<tr>
+<td align="left">‘主机名’</td>
+<td align="center">指定该用户在哪个主机上可以登陆，如果是本地用户可用 localhost，如果想让该用户可以 从任意远程主机登陆，可以使用通配符%</td>
+</tr>
+<tr>
+<td align="left">‘密码’</td>
+<td align="center">该用户的登陆密码，密码可以为空，如果为空则该用户可以不需要密码登陆服务器</td>
+</tr>
+</tbody></table>
+<h4 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建 user1 用户，只能在 localhost 这个服务器登录 mysql 服务器，密码为 123</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line"><span class="comment">--创建 user2 用户可以在任何电脑上登录 mysql 服务器，密码为 123</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：创建的用户名都在 mysql 数据库中的 user 表中可以查看到，密码经过了加密。</p>
+</blockquote>
+<h3 id="给用户授权"><a href="#给用户授权" class="headerlink" title="给用户授权"></a>给用户授权</h3><p>用户创建之后，没什么权限！需要给用户授权  </p>
+<h4 id="语法-7"><a href="#语法-7" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> 权限 <span class="number">1</span>, 权限 <span class="number">2.</span>.. <span class="keyword">ON</span> 数据库名.表名 <span class="keyword">TO</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机名&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键字说明-1"><a href="#关键字说明-1" class="headerlink" title="关键字说明"></a>关键字说明</h4><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GRANT…ON…TO</td>
+<td>授权关键字</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>授予用户的权限，如 CREATE、 ALTER、 SELECT、 INSERT、 UPDATE 等。如果要授 予所有的权限则使用 ALL</td>
+</tr>
+<tr>
+<td>数据库名.表名</td>
+<td>该用户可以操作哪个数据库的哪些表。如果要授予该用户对所有数据库和表的相应操作 权限则可用<em>表示，如</em>.*</td>
+</tr>
+<tr>
+<td>‘用户名‘@’主机名’</td>
+<td>给哪个用户授权，注：有 2 对单引号</td>
+</tr>
+</tbody></table>
+<h4 id="具体操作-1"><a href="#具体操作-1" class="headerlink" title="具体操作"></a>具体操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--1. 给 user1 用户分配对 test 这个数据库操作的权限：创建表，修改表，插入记录，更新记录，查询</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">create</span>,<span class="keyword">alter</span>,<span class="keyword">insert</span>,update,<span class="keyword">select</span> <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="comment">--注：用户名和主机名要与上面创建的相同，要加单引号。</span></span><br><span class="line"><span class="comment">--2. 给 user2 用户分配所有权限，对所有数据库的所有表</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">on</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="撤销授权"><a href="#撤销授权" class="headerlink" title="撤销授权"></a>撤销授权</h3><h4 id="语法-8"><a href="#语法-8" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> 权限 <span class="number">1</span>, 权限 <span class="number">2.</span>.. <span class="keyword">ON</span> 数据库.表名 <span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">from</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>; <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机 名&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键字说明-2"><a href="#关键字说明-2" class="headerlink" title="关键字说明"></a>关键字说明</h4><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REVOKE…ON…FROM</td>
+<td>撤销授权的关键字</td>
+</tr>
+<tr>
+<td>权限</td>
+<td>用户的权限，如 CREATE、 ALTER、 SELECT、 INSERT、 UPDATE 等，所有的权 限则使用 ALL</td>
+</tr>
+<tr>
+<td>数据库名.表名</td>
+<td>对哪些数据库的哪些表，如果要取消该用户对所有数据库和表的操作权限则可用<em>表 示，如</em>.*</td>
+</tr>
+<tr>
+<td>‘用户名‘@’主机名’</td>
+<td>给哪个用户撤销</td>
+</tr>
+</tbody></table>
+<h4 id="具体操作-2"><a href="#具体操作-2" class="headerlink" title="具体操作"></a>具体操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--撤销 user1 用户对 test 数据库所有表的操作的权限</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">from</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="comment">--注：用户名和主机名要与创建时相同，各自要加上单引号 </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><h4 id="语法-9"><a href="#语法-9" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> GRANTS <span class="keyword">FOR</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机名&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><h4 id="语法-10"><a href="#语法-10" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机名&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="具体操作-3"><a href="#具体操作-3" class="headerlink" title="具体操作"></a>具体操作</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--删除 user2</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> <span class="string">&#x27;user2&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改管理员密码"><a href="#修改管理员密码" class="headerlink" title="修改管理员密码"></a>修改管理员密码</h3><h4 id="语法-11"><a href="#语法-11" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin <span class="operator">-</span>uroot <span class="operator">-</span>p password 新密码</span><br></pre></td></tr></table></figure>
+
+<p>注意：需要在未登陆 MySQL 的情况下操作，新密码不需要加上引号。</p>
+<h4 id="mysql中忘记了root用户的密码？"><a href="#mysql中忘记了root用户的密码？" class="headerlink" title="mysql中忘记了root用户的密码？"></a>mysql中忘记了root用户的密码？</h4><ol>
+<li><p>需要管理员运行该cmd,cmd – &gt; net stop mysql 停止mysql服务</p>
+</li>
+<li><p>使用无验证方式启动mysql服务： mysqld –skip-grant-tables</p>
+</li>
+<li><p>打开新的cmd窗口,直接输入mysql命令，敲回车。就可以登录成功</p>
+</li>
+<li><p>use mysql;</p>
+</li>
+<li><p>update user set password = password(‘你的新密码’) where user = ‘root’;</p>
+</li>
+<li><p>关闭两个窗口</p>
+</li>
+<li><p>打开任务管理器，手动结束mysqld.exe 的进程</p>
+</li>
+<li><p>启动mysql服务</p>
+</li>
+<li><p>使用新密码登录。</p>
+</li>
+</ol>
+<h3 id="修改普通用户密码"><a href="#修改普通用户密码" class="headerlink" title="修改普通用户密码"></a>修改普通用户密码</h3><h4 id="语法-12"><a href="#语法-12" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> password <span class="keyword">for</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;主机名&#x27;</span> <span class="operator">=</span> password(<span class="string">&#x27;新密码&#x27;</span>);</span><br><span class="line"><span class="keyword">SET</span> PASSWORD <span class="keyword">FOR</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> <span class="operator">=</span> PASSWORD(<span class="string">&#x27;123&#x27;</span>);</span><br><span class="line">UPDATE <span class="keyword">USER</span> <span class="keyword">SET</span> PASSWORD <span class="operator">=</span> PASSWORD(<span class="string">&#x27;新密码&#x27;</span>) <span class="keyword">WHERE</span> <span class="keyword">USER</span> <span class="operator">=</span> <span class="string">&#x27;用户名&#x27;</span>;</span><br><span class="line">UPDATE <span class="keyword">USER</span> <span class="keyword">SET</span> PASSWORD <span class="operator">=</span> PASSWORD(<span class="string">&#x27;abc&#x27;</span>) <span class="keyword">WHERE</span> <span class="keyword">USER</span> <span class="operator">=</span> <span class="string">&#x27;lisi&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：需要在登陆 MySQL 的情况下操作，新密码要加单引号。</p>
+</blockquote>
+
+      
+      <!-- reward -->
+      
+      <div id="reward-btn">
+        打赏
+      </div>
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linanspace.github.io/2020/ckrldjpwr003g1ku580uibde0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ckrldjpwt003m1ku585b8eodj/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            MySQL约束与设计
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ckrldjpwq003c1ku5egyd93g3/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">java基础语法(二十四)</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: '20lAnkjXFTWuvN6E0NOAmbpv-gzGzoHsz',
+        app_key: 'PHss9nflC6pxJxLL1l0muOB2',
+        path: window.location.pathname,
+        notify: '',
+        verify: '',
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2019-2021
+        Michael Lee
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="星空下de呢喃"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+    strings: ['面朝大海，春暖花开','莫道君行早，更有早行人','人生如逆旅，我亦是行人'],
+    startDelay: 0,
+    typeSpeed: 200,
+    loop: true,
+    backSpeed: 100,
+    showCursor: true
+    });
+  } catch (err) {
+  }
+  
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer:'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
+</script>
+
+
+<script src="/js/ayer.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=34341364&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
