@@ -74,95 +74,6 @@
     
     
     
-    <article id="post-java面试题整理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-
-    
-    <div class="article-meta">
-      <a href="/2021/ckrleoizg003gewu5d7pqbxle/" class="article-date">
-  <time datetime="2021-07-26T14:38:29.091Z" itemprop="datePublished">2021-07-26</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>title: Java面试题整理<br>date: 2021-05-06 14:37:03<br>tags:<br>    - 学习<br>    - Java<br>categories: 学习</p>
-<h2 id="java中的sleep-方法与wait-方法整理"><a href="#java中的sleep-方法与wait-方法整理" class="headerlink" title="java中的sleep()方法与wait()方法整理"></a>java中的sleep()方法与wait()方法整理</h2><p>sleep()方法与wait()方法都可以让线程暂停一段时间，但sleep()方法控制范围是由当前线程决定的，而wait()方法是线程之间的通讯问题。下面分类介绍：</p>
-<h3 id="来源类："><a href="#来源类：" class="headerlink" title="来源类："></a>来源类：</h3><blockquote>
-<p>sleep()是Thread类的静态方法</p>
-<p>wait()是Object的方法，可以对任意一个对象调用wait()方法。</p>
-</blockquote>
-<h3 id="使用范围："><a href="#使用范围：" class="headerlink" title="使用范围："></a>使用范围：</h3><blockquote>
-<p>sleep()可以在任何地方使用，但必须捕获异常</p>
-<p> wait()只能在同步控制方法或同步控制块里面使用，不需要捕获异常</p>
-</blockquote>
-<h3 id="锁："><a href="#锁：" class="headerlink" title="锁："></a>锁：</h3><blockquote>
-<p>sleep()不释放锁，不出让资源系统</p>
-<p>wait()释放锁，进入线程等待池等待，出让系统资源</p>
-</blockquote>
-<h3 id="唤醒："><a href="#唤醒：" class="headerlink" title="唤醒："></a>唤醒：</h3><blockquote>
-<p>sleep()将一个线程睡眠病指定时间自动醒，如果时间不到，可以调用interreput()来强行打断</p>
-<p> wait()将一个线程挂起，直到超时或者该线程被唤醒</p>
-</blockquote>
-<h2 id="TimeUnit-SECONDS-sleep-和sleep区别"><a href="#TimeUnit-SECONDS-sleep-和sleep区别" class="headerlink" title="TimeUnit.SECONDS.sleep()和sleep区别"></a>TimeUnit.SECONDS.sleep()和sleep区别</h2><p>TimeUnit是java.util.concurrent包下面的一个类，TimeUnit提供了可读性更好的线程暂停操作，通常用来替换Thread.sleep()，Thread.sleep()是一个静态方法，暂停线程时它不会==释放锁==，该方法会抛出InterrupttedException异常（如果有线程中断了当前线程）。它有一个潜在的问题就是它的可读性。Thread.sleep()是一个重载方法，可以接收长整型毫秒和长整型的纳秒参数，这样对程序员造成的一个问题就是很难知道到底当前线程是睡眠了多少秒、分、小时或者天。</p>
-<h3 id="Thread-sleep-可读性差"><a href="#Thread-sleep-可读性差" class="headerlink" title="Thread.sleep() 可读性差"></a>Thread.sleep() 可读性差</h3><p>Thread.sleep()方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep（<span class="number">2400000</span>）</span><br></pre></td></tr></table></figure>
-
-<p>对于大多数程序员来说这种写法的可读性很差的，你需要把毫秒转换成秒和分。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">4</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这比前面那个例子已经好多了，但是仍然不是最好的，你注意到睡眠时间用毫秒，不容易猜出当前线程将等待4分钟。</p>
-<h3 id="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。"><a href="#TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。" class="headerlink" title="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。"></a><strong>TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。</strong></h3><p>用TimeUnit写线程睡眠4分钟：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.MINUTES.sleep(<span class="number">4</span>);  <span class="comment">// sleeping for 4 minutes</span></span><br></pre></td></tr></table></figure>
-
-<p>类似你可以采用秒、分、小时级别来暂停当前线程。</p>
-<p><strong>TimeUnit 常用的颗粒度</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS 日的工具类 </span><br><span class="line">TimeUnit.HOURS 时的工具类 </span><br><span class="line">TimeUnit.MINUTES 分的工具类 </span><br><span class="line">TimeUnit.SECONDS 秒的工具类 </span><br><span class="line">TimeUnit.MILLISECONDS 毫秒的工具类</span><br><span class="line"></span><br><span class="line">TimeUnit.SECONDS.sleep( <span class="number">5</span> );    <span class="comment">//延时5秒</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="对-Volatile-的理解"><a href="#对-Volatile-的理解" class="headerlink" title="对 Volatile 的理解"></a>对 Volatile 的理解</h2><p>Volatile 是 Java 虚拟机提供轻量级的同步机制<br>1、保证可见性<br>2、不保证原子性<br>3、禁止指令重排  </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-贪吃蛇项目" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -171,7 +82,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/ckrleoizj003lewu5fho91zif/"
+  <a class="article-title" href="/2021/ckrlet8ck003s4su5gymg8ng7/"
     >贪吃蛇项目</a
   >
 </h2>
@@ -182,7 +93,7 @@
 
     
     <div class="article-meta">
-      <a href="/2021/ckrleoizj003lewu5fho91zif/" class="article-date">
+      <a href="/2021/ckrlet8ck003s4su5gymg8ng7/" class="article-date">
   <time datetime="2021-05-13T03:50:07.000Z" itemprop="datePublished">2021-05-13</time>
 </a>
       
@@ -284,6 +195,242 @@
 
 </article>
     
+    <article id="post-java面试题整理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/ckrlet8c0001r4su55bagadqf/"
+    >Java面试题整理</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/ckrlet8c0001r4su55bagadqf/" class="article-date">
+  <time datetime="2021-05-06T06:37:03.000Z" itemprop="datePublished">2021-05-06</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h2 id="java中的sleep-方法与wait-方法整理"><a href="#java中的sleep-方法与wait-方法整理" class="headerlink" title="java中的sleep()方法与wait()方法整理"></a>java中的sleep()方法与wait()方法整理</h2><p>sleep()方法与wait()方法都可以让线程暂停一段时间，但sleep()方法控制范围是由当前线程决定的，而wait()方法是线程之间的通讯问题。下面分类介绍：</p>
+<h3 id="来源类："><a href="#来源类：" class="headerlink" title="来源类："></a>来源类：</h3><blockquote>
+<p>sleep()是Thread类的静态方法</p>
+<p>wait()是Object的方法，可以对任意一个对象调用wait()方法。</p>
+</blockquote>
+<h3 id="使用范围："><a href="#使用范围：" class="headerlink" title="使用范围："></a>使用范围：</h3><blockquote>
+<p>sleep()可以在任何地方使用，但必须捕获异常</p>
+<p> wait()只能在同步控制方法或同步控制块里面使用，不需要捕获异常</p>
+</blockquote>
+<h3 id="锁："><a href="#锁：" class="headerlink" title="锁："></a>锁：</h3><blockquote>
+<p>sleep()不释放锁，不出让资源系统</p>
+<p>wait()释放锁，进入线程等待池等待，出让系统资源</p>
+</blockquote>
+<h3 id="唤醒："><a href="#唤醒：" class="headerlink" title="唤醒："></a>唤醒：</h3><blockquote>
+<p>sleep()将一个线程睡眠病指定时间自动醒，如果时间不到，可以调用interreput()来强行打断</p>
+<p> wait()将一个线程挂起，直到超时或者该线程被唤醒</p>
+</blockquote>
+<h2 id="TimeUnit-SECONDS-sleep-和sleep区别"><a href="#TimeUnit-SECONDS-sleep-和sleep区别" class="headerlink" title="TimeUnit.SECONDS.sleep()和sleep区别"></a>TimeUnit.SECONDS.sleep()和sleep区别</h2><p>TimeUnit是java.util.concurrent包下面的一个类，TimeUnit提供了可读性更好的线程暂停操作，通常用来替换Thread.sleep()，Thread.sleep()是一个静态方法，暂停线程时它不会==释放锁==，该方法会抛出InterrupttedException异常（如果有线程中断了当前线程）。它有一个潜在的问题就是它的可读性。Thread.sleep()是一个重载方法，可以接收长整型毫秒和长整型的纳秒参数，这样对程序员造成的一个问题就是很难知道到底当前线程是睡眠了多少秒、分、小时或者天。</p>
+<h3 id="Thread-sleep-可读性差"><a href="#Thread-sleep-可读性差" class="headerlink" title="Thread.sleep() 可读性差"></a>Thread.sleep() 可读性差</h3><p>Thread.sleep()方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep（<span class="number">2400000</span>）</span><br></pre></td></tr></table></figure>
+
+<p>对于大多数程序员来说这种写法的可读性很差的，你需要把毫秒转换成秒和分。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Thread.sleep(<span class="number">4</span>*<span class="number">60</span>*<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这比前面那个例子已经好多了，但是仍然不是最好的，你注意到睡眠时间用毫秒，不容易猜出当前线程将等待4分钟。</p>
+<h3 id="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。"><a href="#TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES-SECONDS、MILLISECONDS和NANOSECONDS。" class="headerlink" title="TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。"></a><strong>TimeUnit类解决了这个问题，通过指定DAYS、HOURS、MINUTES,SECONDS、MILLISECONDS和NANOSECONDS。</strong></h3><p>用TimeUnit写线程睡眠4分钟：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.MINUTES.sleep(<span class="number">4</span>);  <span class="comment">// sleeping for 4 minutes</span></span><br></pre></td></tr></table></figure>
+
+<p>类似你可以采用秒、分、小时级别来暂停当前线程。</p>
+<p><strong>TimeUnit 常用的颗粒度</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TimeUnit.DAYS 日的工具类 </span><br><span class="line">TimeUnit.HOURS 时的工具类 </span><br><span class="line">TimeUnit.MINUTES 分的工具类 </span><br><span class="line">TimeUnit.SECONDS 秒的工具类 </span><br><span class="line">TimeUnit.MILLISECONDS 毫秒的工具类</span><br><span class="line"></span><br><span class="line">TimeUnit.SECONDS.sleep( <span class="number">5</span> );    <span class="comment">//延时5秒</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="对-Volatile-的理解"><a href="#对-Volatile-的理解" class="headerlink" title="对 Volatile 的理解"></a>对 Volatile 的理解</h2><p>Volatile 是 Java 虚拟机提供轻量级的同步机制<br>1、保证可见性<br>2、不保证原子性<br>3、禁止指令重排  </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-CSS笔记" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/ckrlet8b600074su5ad7j793h/"
+    >CSS笔记</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2021/ckrlet8b600074su5ad7j793h/" class="article-date">
+  <time datetime="2021-04-13T03:50:07.000Z" itemprop="datePublished">2021-04-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="1、什么是CSS"><a href="#1、什么是CSS" class="headerlink" title="1、什么是CSS"></a>1、什么是CSS</h1><p>如何学习</p>
+<ol>
+<li><p>CSS 是什么</p>
+</li>
+<li><p>CSS 怎么用（快速入门）</p>
+</li>
+<li><p>CSS选择器（重点+难点）</p>
+</li>
+<li><p>美化网页（文字，阴影，超链接，列表渐变…，）</p>
+</li>
+<li><p>盒子模型</p>
+</li>
+<li><p>浮动</p>
+</li>
+<li><p>定位</p>
+</li>
+<li><p>网页动画（特效效果）</p>
+</li>
+</ol>
+<h2 id="1-1什么是CSS"><a href="#1-1什么是CSS" class="headerlink" title="1.1什么是CSS"></a>1.1什么是CSS</h2><p>Cascading Style Sheet 层叠级联样式表</p>
+<p>CSS：表现（美化网页）包括字体，颜色，边距，高度，宽度，背景图片，网页定位，网页浮动…..</p>
+<h2 id="1-2发展史"><a href="#1-2发展史" class="headerlink" title="1.2发展史"></a>1.2发展史</h2><p>CSS1.0</p>
+<p>CSS2.0 DⅣ（块）+CSS,HTML与CSS结构分离的思想，网页变得简单，SEO </p>
+<p>CSS2.1浮动，定位</p>
+<p>CSS3.0圆角，阴影，动画…浏览器兼容性~</p>
+<h2 id="1-3快速入门"><a href="#1-3快速入门" class="headerlink" title="1.3快速入门"></a>1.3快速入门</h2><h3 id="简单入门"><a href="#简单入门" class="headerlink" title="简单入门"></a>简单入门</h3><ol>
+<li><p>在HTML网页中的head标签中加入style标签在里面写CSS代码</p>
+</li>
+<li><p>行内样式</p>
+</li>
+<li><p>建议使用外部样式表</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;css/style. Css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><p>就近原则，谁距离被修饰的近谁的优先级就高</p>
+<h3 id="css的优势"><a href="#css的优势" class="headerlink" title="css的优势"></a>css的优势</h3><ol>
+<li>内容和表现分离</li>
+<li>网页结构表现统一，可以实现复用</li>
+<li>样式十分的丰富</li>
+<li>建议使用独立于htm的cs文件</li>
+<li>利用SEO，容易被搜索引擎收录！</li>
+</ol>
+<h3 id="拓展：外部样式两种写法html"><a href="#拓展：外部样式两种写法html" class="headerlink" title="拓展：外部样式两种写法html"></a>拓展：外部样式两种写法html</h3><p>1、链接式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;！--外部样式--&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span><span class="attr">href</span>=<span class="string">&quot;css/style.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、导入式<br>@ Import是CSS 2.1特有的！</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导入式--&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line"><span class="keyword">@import</span> url（<span class="string">&quot;css/style. css&quot;</span>）</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2、选择器"><a href="#2、选择器" class="headerlink" title="2、选择器"></a>2、选择器</h1><blockquote>
+<p>作用：选择页面上的某一个或者某一类元素</p>
+</blockquote>
+<h3 id="2-1基本选择器"><a href="#2-1基本选择器" class="headerlink" title="2.1基本选择器"></a>2.1基本选择器</h3><ol>
+<li>标签选择器，标签选择器，会选择到页面上所有的这个标签的元素</li>
+<li>类选择器，格式: .class的名称{},可以多个标签同一个 class名称，用于归类</li>
+<li>Id选择器,格式：#Id名称，Id必须保证全局唯一！</li>
+</ol>
+<h3 id="优先级-1"><a href="#优先级-1" class="headerlink" title="优先级"></a>优先级</h3><p>不遵循就近原则，固定的</p>
+<p>id选择器 &gt;class选择器&gt;标签选择器</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-HTML" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -292,7 +439,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/ckrleoiy60007ewu5aw9ufs2h/"
+  <a class="article-title" href="/2021/ckrlet8b600084su5b3mpft2f/"
     >HTML笔记</a
   >
 </h2>
@@ -303,7 +450,7 @@
 
     
     <div class="article-meta">
-      <a href="/2021/ckrleoiy60007ewu5aw9ufs2h/" class="article-date">
+      <a href="/2021/ckrlet8b600084su5b3mpft2f/" class="article-date">
   <time datetime="2021-04-13T03:50:07.000Z" itemprop="datePublished">2021-04-13</time>
 </a>
       
@@ -446,137 +593,6 @@
 
 </article>
     
-    <article id="post-CSS笔记" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/ckrleoiy70008ewu5fbxhezme/"
-    >CSS笔记</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2021/ckrleoiy70008ewu5fbxhezme/" class="article-date">
-  <time datetime="2021-04-13T03:50:07.000Z" itemprop="datePublished">2021-04-13</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="1、什么是CSS"><a href="#1、什么是CSS" class="headerlink" title="1、什么是CSS"></a>1、什么是CSS</h1><p>如何学习</p>
-<ol>
-<li><p>CSS 是什么</p>
-</li>
-<li><p>CSS 怎么用（快速入门）</p>
-</li>
-<li><p>CSS选择器（重点+难点）</p>
-</li>
-<li><p>美化网页（文字，阴影，超链接，列表渐变…，）</p>
-</li>
-<li><p>盒子模型</p>
-</li>
-<li><p>浮动</p>
-</li>
-<li><p>定位</p>
-</li>
-<li><p>网页动画（特效效果）</p>
-</li>
-</ol>
-<h2 id="1-1什么是CSS"><a href="#1-1什么是CSS" class="headerlink" title="1.1什么是CSS"></a>1.1什么是CSS</h2><p>Cascading Style Sheet 层叠级联样式表</p>
-<p>CSS：表现（美化网页）包括字体，颜色，边距，高度，宽度，背景图片，网页定位，网页浮动…..</p>
-<h2 id="1-2发展史"><a href="#1-2发展史" class="headerlink" title="1.2发展史"></a>1.2发展史</h2><p>CSS1.0</p>
-<p>CSS2.0 DⅣ（块）+CSS,HTML与CSS结构分离的思想，网页变得简单，SEO </p>
-<p>CSS2.1浮动，定位</p>
-<p>CSS3.0圆角，阴影，动画…浏览器兼容性~</p>
-<h2 id="1-3快速入门"><a href="#1-3快速入门" class="headerlink" title="1.3快速入门"></a>1.3快速入门</h2><h3 id="简单入门"><a href="#简单入门" class="headerlink" title="简单入门"></a>简单入门</h3><ol>
-<li><p>在HTML网页中的head标签中加入style标签在里面写CSS代码</p>
-</li>
-<li><p>行内样式</p>
-</li>
-<li><p>建议使用外部样式表</p>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;css/style. Css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><p>就近原则，谁距离被修饰的近谁的优先级就高</p>
-<h3 id="css的优势"><a href="#css的优势" class="headerlink" title="css的优势"></a>css的优势</h3><ol>
-<li>内容和表现分离</li>
-<li>网页结构表现统一，可以实现复用</li>
-<li>样式十分的丰富</li>
-<li>建议使用独立于htm的cs文件</li>
-<li>利用SEO，容易被搜索引擎收录！</li>
-</ol>
-<h3 id="拓展：外部样式两种写法html"><a href="#拓展：外部样式两种写法html" class="headerlink" title="拓展：外部样式两种写法html"></a>拓展：外部样式两种写法html</h3><p>1、链接式：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;！--外部样式--&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span><span class="attr">href</span>=<span class="string">&quot;css/style.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2、导入式<br>@ Import是CSS 2.1特有的！</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--导入式--&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line"><span class="keyword">@import</span> url（<span class="string">&quot;css/style. css&quot;</span>）</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="2、选择器"><a href="#2、选择器" class="headerlink" title="2、选择器"></a>2、选择器</h1><blockquote>
-<p>作用：选择页面上的某一个或者某一类元素</p>
-</blockquote>
-<h3 id="2-1基本选择器"><a href="#2-1基本选择器" class="headerlink" title="2.1基本选择器"></a>2.1基本选择器</h3><ol>
-<li>标签选择器，标签选择器，会选择到页面上所有的这个标签的元素</li>
-<li>类选择器，格式: .class的名称{},可以多个标签同一个 class名称，用于归类</li>
-<li>Id选择器,格式：#Id名称，Id必须保证全局唯一！</li>
-</ol>
-<h3 id="优先级-1"><a href="#优先级-1" class="headerlink" title="优先级"></a>优先级</h3><p>不遵循就近原则，固定的</p>
-<p>id选择器 &gt;class选择器&gt;标签选择器</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-多线程" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -585,7 +601,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoizh003hewu52fxw3huq/"
+  <a class="article-title" href="/2020/ckrlet8c1001u4su58hf23ptp/"
     >多线程笔记</a
   >
 </h2>
@@ -596,7 +612,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoizh003hewu52fxw3huq/" class="article-date">
+      <a href="/2020/ckrlet8c1001u4su58hf23ptp/" class="article-date">
   <time datetime="2020-06-15T09:06:12.000Z" itemprop="datePublished">2020-06-15</time>
 </a>
       
@@ -622,7 +638,7 @@
       
       <p>这部分主要讲了多线程的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoizh003hewu52fxw3huq/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8c1001u4su58hf23ptp/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -660,7 +676,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoj0g006dewu55wfah273/"
+  <a class="article-title" href="/2020/ckrlet8dh006c4su52gpbdp4j/"
     >剑指offer1</a
   >
 </h2>
@@ -671,7 +687,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoj0g006dewu55wfah273/" class="article-date">
+      <a href="/2020/ckrlet8dh006c4su52gpbdp4j/" class="article-date">
   <time datetime="2020-04-17T10:23:16.000Z" itemprop="datePublished">2020-04-17</time>
 </a>
       
@@ -698,7 +714,7 @@
       <p>这是我的剑指offer整理的第一部分。</p>
 <p>这部分主要讲了。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoj0g006dewu55wfah273/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8dh006c4su52gpbdp4j/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -736,7 +752,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoiyp0016ewu568e2f2ms/"
+  <a class="article-title" href="/2020/ckrlet8bp00164su59k6r89pl/"
     >Response和Request笔记</a
   >
 </h2>
@@ -747,7 +763,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoiyp0016ewu568e2f2ms/" class="article-date">
+      <a href="/2020/ckrlet8bp00164su59k6r89pl/" class="article-date">
   <time datetime="2020-04-14T09:09:04.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -774,7 +790,7 @@
       <p>这是我的这是我的Response和Request自学整理部分。</p>
 <p>这部分主要讲了Response和Request的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoiyp0016ewu568e2f2ms/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8bp00164su59k6r89pl/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -812,7 +828,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoiya000dewu5f5rcao9p/"
+  <a class="article-title" href="/2020/ckrlet8b9000d4su59a4e1ss7/"
     >HTTP笔记</a
   >
 </h2>
@@ -823,7 +839,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoiya000dewu5f5rcao9p/" class="article-date">
+      <a href="/2020/ckrlet8b9000d4su59a4e1ss7/" class="article-date">
   <time datetime="2020-04-14T04:30:57.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -850,7 +866,7 @@
       <p>这是我的这是我的HTTP自学整理部分。</p>
 <p>这部分主要讲了HTTP的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoiya000dewu5f5rcao9p/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8b9000d4su59a4e1ss7/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -888,7 +904,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoiyq0018ewu56and8pfu/"
+  <a class="article-title" href="/2020/ckrlet8bq00184su5hlf899ph/"
     >Servlet笔记</a
   >
 </h2>
@@ -899,7 +915,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoiyq0018ewu56and8pfu/" class="article-date">
+      <a href="/2020/ckrlet8bq00184su5hlf899ph/" class="article-date">
   <time datetime="2020-04-14T01:49:53.000Z" itemprop="datePublished">2020-04-14</time>
 </a>
       
@@ -926,7 +942,7 @@
       <p>这是我的这是我的Servlet自学整理部分。</p>
 <p>这部分主要讲了Servlet的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoiyq0018ewu56and8pfu/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8bq00184su5hlf899ph/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -964,7 +980,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ckrleoiyu001eewu5ax93a7kw/"
+  <a class="article-title" href="/2020/ckrlet8bu001a4su5c5w36xji/"
     >Tomcat笔记</a
   >
 </h2>
@@ -975,7 +991,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ckrleoiyu001eewu5ax93a7kw/" class="article-date">
+      <a href="/2020/ckrlet8bu001a4su5c5w36xji/" class="article-date">
   <time datetime="2020-04-13T12:46:29.000Z" itemprop="datePublished">2020-04-13</time>
 </a>
       
@@ -1002,7 +1018,7 @@
       <p>这是我的这是我的Tomcat自学整理部分。</p>
 <p>这部分主要讲了Tomcat的相关基础知识。</p>
       
-      <a class="article-more-link" href="/2020/ckrleoiyu001eewu5ax93a7kw/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/ckrlet8bu001a4su5c5w36xji/">阅读更多...</a>
       
       
       <!-- reward -->
